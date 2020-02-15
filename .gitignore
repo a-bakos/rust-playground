@@ -2,4 +2,4 @@
 *.exe
 **/*.pdb
 **/*.exe
-target/**/*
+**/target/**/*
