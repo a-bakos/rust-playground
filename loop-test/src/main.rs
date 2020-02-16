@@ -32,4 +32,10 @@ fn main() {
     }
 
     println!("[For] Finished");
+
+    for number in (1..10).rev() {
+        println!("{}", number);
+    }
+
+    println!("[For] Rev finished");
 }
