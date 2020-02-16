@@ -13,5 +13,23 @@ fn main() {
         }
     };
 
-    println!("The result is doubled: {}", result);
+    println!("[Loop] The result is doubled: {}", result);
+
+    let mut iteration = 3;
+
+    while iteration != 0 {
+        println!("Iteration run");
+
+        iteration = iteration - 1;
+    }
+
+    println!("[While] finished!");
+
+    let collection = ['a', 'b', 'c', 'd', 'e'];
+
+    for element in collection.iter() {
+        println!("The value of this iteration is {}", element);
+    }
+
+    println!("[For] Finished");
 }
