@@ -1,4 +1,3 @@
-
 CMD | DESC
 --- | ----
 `rustup update` | get the latest version
