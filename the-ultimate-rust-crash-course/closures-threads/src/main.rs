@@ -29,7 +29,7 @@ fn main() {
     // 2. Spawn a child thread and have it call `expensive_sum(my_vector)`.  Store the returned
     // join handle in a variable called `handle`. Once you've done this you should be able to run
     // the code and see the Child thread output in the middle of the main thread's letters
-    let handle = thread::spawn(|| expensive_sum(my_vector));
+    let handle = thread::spawn(move || expensive_sum(my_vector));
 
     // While the child thread is running, the main thread will also do some work
     for letter in vec!["a", "b", "c", "d", "e", "f"] {
@@ -52,6 +52,7 @@ fn main() {
     // flow of execution works.  Once you understand it, alter the values passed to the `pause_ms()`
     // calls so that both the "Thread B" outputs occur before the "Thread A" outputs.
 
+    // tx = sending side (transmitter), rx = receiving side (receiver)
     let (tx, rx) = channel::unbounded();
     // Cloning a channel makes another variable connected to that end of the channel so that you can
     // send it to another thread.
@@ -62,7 +63,9 @@ fn main() {
         pause_ms(200);
         tx2.send("Thread A: 2").unwrap();
     });
+
     pause_ms(100); // Make sure Thread A has time to get going before we spawn Thread B
+
     let handle_b = thread::spawn(move || {
         pause_ms(0);
         tx.send("Thread B: 1").unwrap();
