@@ -14,6 +14,9 @@ CMD | DESC
 `cargo doc --open` | Generate local documentation
 `cargo clippy` | See idiomatic code suggestions
 
+**Rust online playground**
+https://play.rust-lang.org/
+
 **Sublime Text 3: Rust Enhanced package**
 https://github.com/rust-lang/rust-enhanced
 
