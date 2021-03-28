@@ -13,4 +13,31 @@ fn main() {
 
     println!("C is {} and A is {}", c, a); // print multi vars
     println!("C is {0:.2} and A is {1} and once again, C is {0:.2}", c, a); // print multi vars multiple times by referencing their position
+
+    let mut binary_value = 0b_1111_0101_u8;
+    println!("Value is {}", binary_value);
+    // print in binary format, where b is to print in binary, 8 to say how many bits, and 0 is to show leading zeros
+    println!("Value is {:08b}", binary_value);
+
+    // bitwise negation
+    binary_value = !binary_value;
+    println!("Value is {:08b}", binary_value);
+
+    // bitwise AND to clear the bit at position 3
+    binary_value = binary_value & 0b_1111_0111;
+    println!("Value is {:08b}", binary_value);
+
+    // bitwise OR
+    binary_value = binary_value | 0b_0100_0000;
+    println!("Value is {:08b}", binary_value);
+
+    // bitwise XOR - exclusive OR
+    binary_value = binary_value ^ 0b_0101_0101;
+    println!("Value is {:08b}", binary_value);
+
+    // bitwise SHIFT
+    binary_value = binary_value << 4;
+    println!("Value is {:08b}", binary_value);
+    binary_value = binary_value >> 4;
+    println!("Value is {:08b}", binary_value);
 }
