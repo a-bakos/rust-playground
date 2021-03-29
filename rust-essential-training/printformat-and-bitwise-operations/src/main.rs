@@ -32,6 +32,7 @@ fn main() {
     println!("Value is {:08b}", binary_value);
 
     // bitwise XOR - exclusive OR
+    // simple thinking: A = true, B = False -> XOR is True if A and B are different
     binary_value = binary_value ^ 0b_0101_0101;
     println!("Value is {:08b}", binary_value);
 
@@ -40,4 +41,8 @@ fn main() {
     println!("Value is {:08b}", binary_value);
     binary_value = binary_value >> 4;
     println!("Value is {:08b}", binary_value);
+
+    // CHAR data type
+    let new_char = '\u{261D}';
+    println!("This char: {}", new_char);
 }
