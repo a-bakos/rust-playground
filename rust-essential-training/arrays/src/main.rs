@@ -13,4 +13,16 @@ fn main() {
 
     // Create a 3 dimensional array full of 0-s
     let garage = [[[0; 100]; 20]; 5];
+
+    let mut stuff: (i8, f32, char) = (4, 3.14, 'x');
+    let first_tuple_item = stuff.0;
+    stuff.1 = 6.28;
+    println!(
+        "First tuple item: {} / And second tuple item; {}",
+        first_tuple_item, stuff.1
+    );
+
+    // Tuple destructuring
+    let (a, b, c) = stuff;
+    println!("Value of b is {}", b);
 }
