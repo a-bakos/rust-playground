@@ -87,18 +87,18 @@ fn main() {
     let mut min: i32;
     let mut mean: f32;
 
-    min = 0;
-    max = 0;
+    min = numbers[0];
+    max = numbers[0];
     mean = 0.0;
-    for number in numbers.iter() {
-        if number > &max {
-            max = *number;
-        } else if number < &min {
-            min = *number;
+    for &number in numbers.iter() {
+        if number > max {
+            max = number;
+        } else if number < min {
+            min = number;
         }
-        mean += *number as f32;
+        mean += number as f32;
     }
-    mean = mean / numbers.len() as f32;
+    mean /= numbers.len() as f32;
 
     println!("Min: {}", min);
     println!("Max: {}", max);
