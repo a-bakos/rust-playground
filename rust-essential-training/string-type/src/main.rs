@@ -1,3 +1,4 @@
+#![allow(unused_doc_comments)]
 fn main() {
     let mut message = String::from("Earth"); // Allocated on the heap
     println!("{}", message);
@@ -50,4 +51,31 @@ fn main() {
     let planets = [1, 2, 3, 4, 5, 6, 7, 8];
     let inner_planets: &[i32] = &planets[..4];
     println!("Inner planets are: {:?}", inner_planets);
+
+    /**
+     * &String != &str
+     *
+     * A borrowed &String reference will point to an actual
+     * string on the stack which in turns points to and own
+     * the string data that lives on the heap. String also
+     * stores the length and the capacity.
+     *
+     * &str slice only stores the pointer to the heap data
+     * along with the length. Doesn't need to know the
+     * capacity because it doesn't own the string on the
+     * heap.
+     */
+    fn get_first_word(s: &str) -> &str {
+        let bytes = s.as_bytes();
+        println!("{:?}", bytes);
+        for (index, &item) in bytes.iter().enumerate() {
+            if item == b' ' {
+                return &s[..index]; // found a space
+            }
+        }
+
+        &s // no spaces, this is a single word
+    }
+    let new_string = String::from("Hello Earth!");
+    println!("{}", get_first_word(&new_string));
 }
