@@ -41,6 +41,13 @@ fn main() {
      * Slices
      */
     let new_message = String::from("Greetings from Earth!");
-    let earth_slice = &new_message[15..=15 + 5];
+    let earth_slice = &new_message[15..]; // from the 15th character to the end
     println!("The slice is {}", earth_slice);
+
+    // In addition to slicing string,
+    // we can also create slices that reference other types
+    // of collections such as arrays:as
+    let planets = [1, 2, 3, 4, 5, 6, 7, 8];
+    let inner_planets: &[i32] = &planets[..4];
+    println!("Inner planets are: {:?}", inner_planets);
 }
