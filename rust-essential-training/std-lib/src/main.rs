@@ -22,4 +22,30 @@ fn main() {
 
     let rand_gen = thread_rng().gen_range(1..11);
     println!("Number is {}", rand_gen);
+
+    /**
+     * Challenge: higher or lower
+     */
+    let mut user_choice = String::new();
+    let computers_number = random::<i32>();
+    println!("Guess the number!");
+
+    loop {
+        println!("Enter your guess:");
+        io::stdin().read_line(&mut user_choice);
+        let user_choice: i32 = user_choice.trim().parse().unwrap();
+
+        println!("Your choice: {}", user_choice);
+
+        if user_choice > computers_number {
+            println!("Too big, try again.");
+            continue;
+        } else if user_choice < computers_number {
+            println!("Too small, try again.");
+            continue;
+        } else {
+            println!("That is correct, you win!");
+            break;
+        }
+    }
 }
