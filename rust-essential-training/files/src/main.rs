@@ -17,4 +17,8 @@ fn main() {
     // Read a file
     let contents = fs::read_to_string("series.txt").unwrap();
     println!("Content is {}", contents);
+
+    for line in contents.lines() {
+        println!("{}", line);
+    }
 }
