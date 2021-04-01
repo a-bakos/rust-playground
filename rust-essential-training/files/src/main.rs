@@ -1,3 +1,4 @@
+use std::io::{Read, Write};
 use std::{env, fs};
 
 fn main() {
@@ -27,4 +28,25 @@ fn main() {
     // This will print the individual bytes from the file
     // as unsigned integers
     println!("{:?}", contents); // Debug formatter
+
+    /**
+     * WRITE TO A FILE
+     */
+    let mut to_write = String::new();
+    to_write.push_str("X-Files\n");
+    to_write.push_str("House MD\n");
+    to_write.push_str("Fringe\n");
+
+    fs::write("series.txt", to_write);
+
+    let mut file = fs::OpenOptions::new()
+        .append(true)
+        .open("series.txt")
+        .unwrap();
+
+    // mark this string literal to be interpreted as
+    // a collection of byte values -- write doesn't care
+    // what the data is, but it think of it as a series of
+    // bytes so it expect an array of u8 values
+    file.write(b"\nSuperstore");
 }
