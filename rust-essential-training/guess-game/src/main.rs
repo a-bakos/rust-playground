@@ -11,7 +11,9 @@ fn main() {
     loop {
         let mut user_choice = String::new();
         println!("Enter your guess:");
-        io::stdin().read_line(&mut user_choice);
+        io::stdin()
+            .read_line(&mut user_choice)
+            .expect("Failed to read line.");
         let user_choice: i32 = user_choice.trim().parse().unwrap();
 
         println!("Your choice: {}", user_choice);
