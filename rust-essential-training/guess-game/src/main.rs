@@ -17,6 +17,11 @@ fn main() {
         println!("Your choice: {}", user_choice);
         println!("COMPUTER: {}", computers_number);
 
+        if user_choice > 1000 || user_choice < 0 {
+            println!("You broke the rules!");
+            break;
+        }
+
         if user_choice > computers_number {
             println!("Too big, try again.");
         } else if user_choice < computers_number {
