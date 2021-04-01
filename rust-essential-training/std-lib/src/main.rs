@@ -1,3 +1,4 @@
+use rand::prelude::*;
 use std::io;
 
 fn main() {
@@ -15,4 +16,10 @@ fn main() {
     // let number = buffer.trim().parse::<i32>(); // turbofish
     let number: i32 = buffer.trim().parse().unwrap();
     println!("number + 1 is {}", number + 1);
+
+    let rand_number = random::<f64>(); // turbofish operator
+    println!("number is {}", rand_number);
+
+    let rand_gen = thread_rng().gen_range(1..11);
+    println!("Number is {}", rand_gen);
 }
