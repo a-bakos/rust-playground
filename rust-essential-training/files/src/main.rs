@@ -21,4 +21,10 @@ fn main() {
     for line in contents.lines() {
         println!("{}", line);
     }
+
+    let contents = fs::read("series.txt").unwrap(); // returns vector
+
+    // This will print the individual bytes from the file
+    // as unsigned integers
+    println!("{:?}", contents); // Debug formatter
 }
