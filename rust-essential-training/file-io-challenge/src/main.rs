@@ -1,12 +1,10 @@
-use std::env;
-use std::fs;
-use std::io::Read;
+use std::{env, fs};
 
 fn main() {
     // Require min 2 args to open the program
     if env::args().len() <= 1 {
-        println!("Program requires at least arguments!");
-        return;
+        println!("Program requires at least arguments: <file path> <search name>");
+        std::process::exit(1);
     }
 
     let file_to_open = env::args().nth(1).unwrap();
