@@ -88,6 +88,12 @@ fn main() {
     println!("Rectangle area is {}", rect_area);
     rectangle.scale(0.5);
     println!("Rectangle is {:?}", rectangle);
+
+    let rect_2 = Rectangle { w: 1.2, h: 3.4 };
+    println!("Rectangle is {:?}", rect_2);
+
+    let triangle = Triangle { a: 1, b: 5, c: 2 };
+    println!("Triangle is {:?}", triangle);
 }
 
 #[derive(Debug)]
@@ -110,4 +116,12 @@ impl Rectangle {
         self.w *= scale;
         self.h *= scale;
     }
+}
+
+// Generic data type:
+#[derive(Debug)]
+struct Triangle<T> {
+    a: T,
+    b: T,
+    c: T,
 }
