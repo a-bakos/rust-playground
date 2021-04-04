@@ -13,6 +13,16 @@ impl Shuttle {
     fn add_fuel(&mut self, gallons: f64) {
         self.propellant += gallons;
     }
+
+    // Associated function:
+    // Like a constructor!
+    fn new(name: &str) -> Shuttle {
+        Shuttle {
+            name: String::from(name),
+            crew_size: 7,    // default
+            propellant: 0.0, // default
+        }
+    }
 }
 
 fn main() {
@@ -46,4 +56,7 @@ fn main() {
     println!("Starting propellant: {}", vehicle.propellant);
     vehicle.add_fuel(848.53);
     println!("Updated propellant: {}", vehicle.propellant);
+
+    let constructed_vehicle = Shuttle::new("Endeavour");
+    println!("Constructed Vehicle is {:?}", constructed_vehicle);
 }
