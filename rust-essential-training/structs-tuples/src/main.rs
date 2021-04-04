@@ -78,4 +78,35 @@ fn main() {
     let coord = Point(4, 5, 6);
     let y = get_y(coord);
     println!("Y is {:?}", y);
+
+    /**
+     * Challenge
+     */
+    let mut rectangle = Rectangle::new(150.0, 250.0);
+    println!("Rectangle is {:?}", rectangle);
+    let rect_area = rectangle.get_area();
+    println!("Rectangle area is {}", rect_area);
+    rectangle.scale(0.5);
+    println!("Rectangle is {:?}", rectangle);
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    w: f64,
+    h: f64,
+}
+
+impl Rectangle {
+    fn get_area(&self) -> f64 {
+        self.w * self.h
+    }
+
+    fn new(w: f64, h: f64) -> Rectangle {
+        Rectangle { w: w, h: h }
+    }
+
+    fn scale(&mut self, scale: f64) {
+        self.w *= scale;
+        self.h *= scale;
+    }
 }
