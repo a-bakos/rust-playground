@@ -101,8 +101,9 @@ impl Rectangle {
         self.w * self.h
     }
 
+    // Associated function (cos no self as param)
     fn new(w: f64, h: f64) -> Rectangle {
-        Rectangle { w: w, h: h }
+        Rectangle { w, h }
     }
 
     fn scale(&mut self, scale: f64) {
