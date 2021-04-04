@@ -25,6 +25,15 @@ impl Shuttle {
     }
 }
 
+/**
+ * Tuple Structs
+ */
+struct Color(u8, u8, u8); // RGB
+struct Point(u8, u8, u8); // X, Y, Z coordinates
+fn get_y(p: Point) -> u8 {
+    p.1
+}
+
 fn main() {
     let mut vehicle = Shuttle {
         name: String::from("Alien"),
@@ -59,4 +68,14 @@ fn main() {
 
     let constructed_vehicle = Shuttle::new("Endeavour");
     println!("Constructed Vehicle is {:?}", constructed_vehicle);
+
+    /**
+     * Tuple structs
+     */
+    let red = Color(255, 0, 0);
+    println!("Red first value is {}", red.0);
+
+    let coord = Point(4, 5, 6);
+    let y = get_y(coord);
+    println!("Y is {:?}", y);
 }
