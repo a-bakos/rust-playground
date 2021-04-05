@@ -66,4 +66,19 @@ fn main() {
     // the name field (order specified on struct implementation)
     // and Hubble's name is longer than GPS
     println!("Hubble == GPS is {}", hubble > gps);
+
+    // Trait bounds
+    print_type(13);
+    print_type(13.0);
+    print_type("thirteen");
+    print_type([13]);
+}
+
+// Trait bounds
+
+use std::any;
+use std::fmt;
+
+fn print_type<T: fmt::Debug>(item: T) {
+    println!("{:?} is {:?}", item, any::type_name::<T>());
 }
