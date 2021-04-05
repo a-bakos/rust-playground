@@ -48,6 +48,8 @@ fn main() {
     // Option Enum
     let countdown = [5, 4, 3, 2, 1];
     //let number = countdown[5]; // doesnt exist
-    let number = countdown.get(5); //=> None
+    let number = countdown.get(5); //(5) => None
+                                   //let number = number.unwrap() + 1; // discouraged
+    let number = number.unwrap_or(&0) + 1; // unwrap_or takes a parameter to return when the Options is None
     println!("Number is {:?}", number);
 }
