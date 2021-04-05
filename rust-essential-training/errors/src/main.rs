@@ -17,4 +17,13 @@ fn main() {
     //let content_exists = fs::read_to_string("hello.txt").unwrap();
     let content_exists = fs::read_to_string("hello.txt");
     println!("content from hello is {:?}", content_exists);
+
+    // Better error handling:
+    // Use match
+    let result = fs::read_to_string("hello.txt"); // Result enum
+    let contents = match result {
+        Ok(message) => message,
+        Err(error) => String::from("There was an error"),
+    };
+    println!("Contents is {:?}", contents);
 }
