@@ -26,10 +26,19 @@ struct Shuttle<'a> {
     name: &'a str,
 }
 
-impl<'a> Shuttle<'a> {
-    fn send_transmission(&self, msg: &str) -> &str {
+impl<'a, 'b> Shuttle<'a> {
+    // We dont need to annotate lifetime in the function
+    // signature because of Lifetime Rule #3.
+    //fn send_transmission(&self, msg: &str) -> &str {
+    //    println!("Transmitting message: {}", msg);
+    //    self.name
+    //}
+
+    // If we want to return the message, we need to annotate the
+    // lifetime
+    fn send_transmission(&'a self, msg: &'b str) -> &'b str {
         println!("Transmitting message: {}", msg);
-        self.name
+        msg
     }
 }
 
