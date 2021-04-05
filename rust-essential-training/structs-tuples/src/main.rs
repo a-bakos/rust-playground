@@ -89,10 +89,14 @@ fn main() {
     rectangle.scale(0.5);
     println!("Rectangle is {:?}", rectangle);
 
+    // Generic data types:
     let rect_2 = Rectangle { w: 1.2, h: 3.4 };
     println!("Rectangle is {:?}", rect_2);
-
-    let triangle = Triangle { a: 1, b: 5, c: 2 };
+    let triangle = Triangle {
+        a: 1_u8,
+        b: 5_u16,
+        c: 2_u8,
+    };
     println!("Triangle is {:?}", triangle);
 }
 
@@ -120,8 +124,9 @@ impl Rectangle {
 
 // Generic data type:
 #[derive(Debug)]
-struct Triangle<T> {
+struct Triangle<T, U> {
+    // Can use multiple generic type definition: T, U
     a: T,
-    b: T,
+    b: U,
     c: T,
 }
