@@ -21,10 +21,28 @@ fn best_fuel<'a>(x: &'a str, y: &'a str) -> &'a str {
     }
 }
 
+// Struct lifetime annotation
+struct Shuttle<'a> {
+    name: &'a str,
+}
+
+impl<'a> Shuttle<'a> {
+    fn send_transmission(&self, msg: &str) -> &str {
+        println!("Transmitting message: {}", msg);
+        self.name
+    }
+}
+
 fn main() {
     let result;
     let propellant1 = String::from("RP-1");
     let propellant2 = String::from("LNG");
     result = best_fuel(&propellant1, &propellant2);
     println!("Result is {}", result);
+
+    // Struct lifetime
+    let vehicle = Shuttle { name: "Endeavour" };
+
+    let sender = vehicle.send_transmission("Greetings from orbit!");
+    println!("Sender is {}", sender);
 }
