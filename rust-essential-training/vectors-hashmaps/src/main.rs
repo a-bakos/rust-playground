@@ -9,8 +9,10 @@ fn main() {
 
     let last = friends.pop();
     println!("Last friend is {:?}", last);
-    let fourth = &friends[3];
-    println!("Try to get Gunther {}", fourth);
+    //let fourth = &friends[3];
+    //println!("Try to get Gunther {}", fourth); // out of bounds error
+    let fourth = friends.get(3);
+    println!("Try to get Gunther: {:?}", fourth); // None
 
     println!("Friends are: {:?}", friends);
 
