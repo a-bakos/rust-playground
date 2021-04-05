@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     let mut friends: Vec<String> = Vec::new();
     friends.push(String::from("Joey"));
@@ -21,4 +23,20 @@ fn main() {
 
     // Pre-populate the vector with values:
     let countdown = vec![5, 4, 3, 2, 1];
+    println!("{:?}", countdown);
+
+    /**
+     * Hashmaps
+     *
+     * Orderkeys stored are not necessarily the same as you inserted them/
+     */
+    let mut superstore_crew_salary = HashMap::new(); // data type not defined
+    superstore_crew_salary.insert("Amy", 119000);
+    superstore_crew_salary.insert("Jonah", 23000);
+    superstore_crew_salary.insert("Dina", 30000);
+    superstore_crew_salary.insert("Cheyenne", 26000);
+    println!("Crew salary: {:?}", superstore_crew_salary);
+
+    let jonah = superstore_crew_salary.get("Jonah");
+    println!("Jonah: {:?}", jonah);
 }
