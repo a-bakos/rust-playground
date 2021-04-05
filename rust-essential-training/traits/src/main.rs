@@ -72,6 +72,10 @@ fn main() {
     print_type(13.0);
     print_type("thirteen");
     print_type([13]);
+
+    // Multiple trait bounds
+    compate_and_print(1.0, 1);
+    compate_and_print(1.1, 1);
 }
 
 // Trait bounds
@@ -81,4 +85,18 @@ use std::fmt;
 
 fn print_type<T: fmt::Debug>(item: T) {
     println!("{:?} is {:?}", item, any::type_name::<T>());
+}
+
+// Multiple trait bounds
+
+fn compate_and_print<T, U>(a: T, b: U)
+where
+    T: fmt::Display + PartialEq + From<U>,
+    U: fmt::Display + PartialEq + Copy,
+{
+    if a == T::from(b) {
+        println!("{} is equal to {}", a, b);
+    } else {
+        println!("{} is NOT equal to {}", a, b);
+    }
 }
