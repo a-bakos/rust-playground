@@ -18,4 +18,7 @@ fn main() {
 
     let third = &friends[2];
     println!("The third friend is {}", third);
+
+    // Pre-populate the vector with values:
+    let countdown = vec![5, 4, 3, 2, 1];
 }
