@@ -4,6 +4,8 @@ struct Shuttle {
     crew_size: u8,
     propellant: f64,
 }
+// Shuttle primarily lives on the stack, except for the
+// name property (String) which is stored on the heap.
 
 impl Shuttle {
     fn get_name(&self) -> &str {
@@ -102,6 +104,9 @@ fn main() {
 
     let triangle_u8 = Triangle { a: 1, b: 2, c: 3 };
     println!("Triangle u8 periemeter is {}", triangle_u8.get_perimeter());
+
+    // Generic FUNCTIONS
+    println!("The biggest is {}", get_biggest(1, 2));
 }
 
 #[derive(Debug)]
@@ -136,7 +141,7 @@ struct Triangle<T, U, V> {
     c: V,
 }
 
-// generic method definitions
+// Generic METHOD definitions
 // Need to add T, U  at both places
 impl<T, U, V> Triangle<T, U, V> {
     fn get_a_witdh(&self) -> &T {
@@ -150,5 +155,15 @@ impl<T, U, V> Triangle<T, U, V> {
 impl Triangle<u8, u8, u8> {
     fn get_perimeter(&self) -> u8 {
         &self.a + &self.b + &self.c
+    }
+}
+
+// Generic FUNCTION definitons
+// Partial Ord is part of Prelude
+fn get_biggest<T: PartialOrd>(a: T, b: T) -> T {
+    if a > b {
+        a
+    } else {
+        b
     }
 }
