@@ -99,6 +99,9 @@ fn main() {
     };
     println!("Triangle is {:?}", triangle);
     println!("Triangle A-side width is {:?}", triangle.get_a_witdh());
+
+    let triangle_u8 = Triangle { a: 1, b: 2, c: 3 };
+    println!("Triangle u8 periemeter is {}", triangle_u8.get_perimeter());
 }
 
 #[derive(Debug)]
@@ -138,5 +141,14 @@ struct Triangle<T, U, V> {
 impl<T, U, V> Triangle<T, U, V> {
     fn get_a_witdh(&self) -> &T {
         &self.a
+    }
+}
+
+// This implementation block is for a specific, concrete
+// type of Triangle. Methods defined in this block will
+// only be available for Triangles with u8 values.
+impl Triangle<u8, u8, u8> {
+    fn get_perimeter(&self) -> u8 {
+        &self.a + &self.b + &self.c
     }
 }
