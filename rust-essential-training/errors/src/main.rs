@@ -42,6 +42,8 @@ fn main() {
 
 fn read_and_combine(f1: &str, f2: &str) -> Result<String, io::Error> {
     // Shorthand to propagate
+    // Only use the shorthand for functions that return
+    // a Result enum
     let mut s1 = fs::read_to_string(f1)?;
     // Verbose way to propagate
     let s2 = match fs::read_to_string(f2) {
