@@ -1,4 +1,5 @@
 use std::fs;
+use std::io;
 
 fn main() {
     //panic!("PROBLEM!");
@@ -23,7 +24,11 @@ fn main() {
     let result = fs::read_to_string("hello.txt"); // Result enum
     let contents = match result {
         Ok(message) => message,
-        Err(error) => String::from("There was an error"),
+        Err(error) => match error.kind() {
+            io::ErrorKind::NotFound => String::from("File not found"),
+            io::ErrorKind::PermissionDenied => String::from("Permission Denied"),
+            _ => panic!("Another type of error! {:?}", error),
+        },
     };
     println!("Contents is {:?}", contents);
 }
