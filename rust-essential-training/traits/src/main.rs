@@ -76,6 +76,8 @@ fn main() {
     // Multiple trait bounds
     compate_and_print(1.0, 1);
     compate_and_print(1.1, 1);
+
+    println!("Output is {}", get_displayable());
 }
 
 // Trait bounds
@@ -99,4 +101,11 @@ where
     } else {
         println!("{} is NOT equal to {}", a, b);
     }
+}
+
+// Return types with implemented traits
+
+fn get_displayable() -> impl fmt::Display {
+    "thirteen" // something that implements the display trait
+               // otherwise, that'll be a dynamic dispatch
 }
