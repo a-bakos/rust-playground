@@ -49,12 +49,48 @@ fn main() {
     let countdown = [5, 4, 3, 2, 1];
     //let number = countdown[5]; // doesnt exist
     let number = countdown.get(5); //(5) => None
-                                   //let number = number.unwrap() + 1; // discouraged
-                                   //let number = number.unwrap_or(&0) + 1; // unwrap_or takes a parameter to return when the Options is None
+
+    //let number = number.unwrap() + 1; // discouraged
+    //let number = number.unwrap_or(&0) + 1; // unwrap_or takes a parameter to return when the Options is None
     let number = match number {
         Some(number) => number + 1,
         None => 0,
     };
 
     println!("Number is {:?}", number);
+
+    // If - Let syntax
+    let number = Some(13);
+    match number {
+        Some(13) => println!("Thirteen"),
+        _ => (),
+    }
+    // Same thing as above - syntactic sugar
+    if let Some(13) = number {
+        println!("Thirteen");
+    }
+
+    // Enum challenge
+    let address = Location::Unknown;
+    address.display();
+    let address = Location::Anonym;
+    address.display();
+    let address = Location::Known(28.564, -80.565);
+    address.display();
+}
+
+enum Location {
+    Unknown,
+    Anonym,
+    Known(f64, f64),
+}
+
+impl Location {
+    fn display(&self) {
+        match *self {
+            Location::Unknown => println!("Location is Unknown"),
+            Location::Anonym => println!("Location is Anonym"),
+            Location::Known(x, y) => println!("Location is {}, {}", x, y),
+        }
+    }
 }
