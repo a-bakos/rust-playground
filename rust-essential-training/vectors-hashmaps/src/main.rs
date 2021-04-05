@@ -36,6 +36,8 @@ fn main() {
     superstore_crew_salary.insert("Dina", 30000);
     superstore_crew_salary.insert("Cheyenne", 26000);
     superstore_crew_salary.insert("Cheyenne", 28000); // overwriting
+
+    // Updating hashmap entries
     superstore_crew_salary.entry("Dina").or_insert(45000); // insert if it doesn't exist
     superstore_crew_salary.entry("Glenn").or_insert(85000); // insert if it doesn't exist // also returns a mutable reference
     let cheyenne = superstore_crew_salary.entry("Cheyenne").or_insert(0); // reference
@@ -45,6 +47,4 @@ fn main() {
 
     let jonah = superstore_crew_salary.get("Jonah"); // returns option enum
     println!("Jonah: {:?}", jonah);
-
-    // Updating HashMap entries
 }
