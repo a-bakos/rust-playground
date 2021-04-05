@@ -10,16 +10,21 @@ struct SpaceStation {
 }
 
 trait Description {
-    fn describe(&self) -> String;
+    fn describe(&self) -> String {
+        // Default trait implementation
+        String::from("This is an object flying through space!")
+    }
 }
 
 impl Description for Satellite {
-    fn describe(&self) -> String {
-        format!(
-            "The {} flying at {} miles per second!",
-            self.name, self.velocity
-        )
-    }
+    // If the implementation block is empty, the default
+    // trait implementation will be used!
+    // fn describe(&self) -> String {
+    //     format!(
+    //         "The {} flying at {} miles per second!",
+    //         self.name, self.velocity
+    //     )
+    // }
 }
 
 impl Description for SpaceStation {
