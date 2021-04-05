@@ -1,3 +1,7 @@
+// DERIVE:
+// when you derive traits, the compiler will
+// generate default code for the required methods.
+#[derive(PartialEq, PartialOrd)]
 struct Satellite {
     name: String,
     velocity: f64, // miles per second
@@ -50,4 +54,16 @@ fn main() {
 
     println!("{}", hubble.describe());
     println!("{}", iss.describe());
+
+    let gps = Satellite {
+        name: String::from("GPS"),
+        velocity: 2.42,
+    };
+
+    // Equal only if all of the fields are equal
+    println!("Hubble == GPS is {}", hubble == gps);
+    // Hubble will be greater because it first compares
+    // the name field (order specified on struct implementation)
+    // and Hubble's name is longer than GPS
+    println!("Hubble == GPS is {}", hubble > gps);
 }
