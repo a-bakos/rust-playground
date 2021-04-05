@@ -123,6 +123,7 @@ impl Rectangle {
 }
 
 // Generic data type:
+// Generics are zero cost abstraction!
 #[derive(Debug)]
 struct Triangle<T, U> {
     // Can use multiple generic type definition: T, U
