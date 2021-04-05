@@ -78,6 +78,9 @@ fn main() {
     compate_and_print(1.1, 1);
 
     println!("Output is {}", get_displayable());
+
+    // Trait Display challenge
+    println!("HUBBLE IS: {}", hubble);
 }
 
 // Trait bounds
@@ -108,4 +111,21 @@ where
 fn get_displayable() -> impl fmt::Display {
     "thirteen" // something that implements the display trait
                // otherwise, that'll be a dynamic dispatch
+}
+
+/**
+ * Trait challenge
+ * Implement the Display trait for a custom struct
+ *
+ * Our custom struct can be used with a print macro
+ * like most other common data types
+ */
+impl fmt::Display for Satellite {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(
+            f,
+            "{} flying at {} miles per hour",
+            self.name, self.velocity
+        )
+    }
 }
