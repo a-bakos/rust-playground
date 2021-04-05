@@ -31,4 +31,24 @@ fn main() {
         },
     };
     println!("Contents is {:?}", contents);
+
+    // Propagating Errors
+    let propagate_result = read_and_combine("file1.txt", "file2.txt");
+    match propagate_result {
+        Ok(s) => println!("Propagate result is:\n{}", s),
+        Err(e) => println!("There was an error!{}", e),
+    };
+}
+
+fn read_and_combine(f1: &str, f2: &str) -> Result<String, io::Error> {
+    // Shorthand to propagate
+    let mut s1 = fs::read_to_string(f1)?;
+    // Verbose way to propagate
+    let s2 = match fs::read_to_string(f2) {
+        Ok(s) => s,
+        Err(e) => return Err(e),
+    };
+    s1.push('\n');
+    s1.push_str(&s2);
+    Ok(s1)
 }
