@@ -44,4 +44,10 @@ fn main() {
 
     let perimeter = my_shape.get_perimeter();
     println!("Perimeter is {}", perimeter);
+
+    // Option Enum
+    let countdown = [5, 4, 3, 2, 1];
+    //let number = countdown[5]; // doesnt exist
+    let number = countdown.get(5); //=> None
+    println!("Number is {:?}", number);
 }
