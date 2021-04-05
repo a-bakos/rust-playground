@@ -93,11 +93,12 @@ fn main() {
     let rect_2 = Rectangle { w: 1.2, h: 3.4 };
     println!("Rectangle is {:?}", rect_2);
     let triangle = Triangle {
-        a: 1_u8,
+        a: 10_u8,
         b: 5_u16,
         c: 2_u8,
     };
     println!("Triangle is {:?}", triangle);
+    println!("Triangle A-side width is {:?}", triangle.get_a_witdh());
 }
 
 #[derive(Debug)]
@@ -125,9 +126,17 @@ impl Rectangle {
 // Generic data type:
 // Generics are zero cost abstraction!
 #[derive(Debug)]
-struct Triangle<T, U> {
+struct Triangle<T, U, V> {
     // Can use multiple generic type definition: T, U
     a: T,
     b: U,
-    c: T,
+    c: V,
+}
+
+// generic method definitions
+// Need to add T, U  at both places
+impl<T, U, V> Triangle<T, U, V> {
+    fn get_a_witdh(&self) -> &T {
+        &self.a
+    }
 }
