@@ -9,6 +9,8 @@ fn main() {
 
     let last = friends.pop();
     println!("Last friend is {:?}", last);
+    let fourth = &friends[3];
+    println!("Try to get Gunther {}", fourth);
 
     println!("Friends are: {:?}", friends);
 
