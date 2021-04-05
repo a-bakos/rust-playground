@@ -18,23 +18,32 @@ fn main() {
 
         let mut user_choice = String::new();
         println!("Enter your guess:");
-        io::stdin()
-            .read_line(&mut user_choice)
-            .expect("Failed to read line.");
-        let user_choice: i32 = user_choice.trim().parse().unwrap();
+        let guess = match io::stdin().read_line(&mut user_choice) {
+            Ok(_) => match user_choice.trim().parse::<i32>() {
+                Ok(value) => value, // success
+                Err(_) => {
+                    println!("\nFailed to parse input. Guess again!");
+                    continue;
+                }
+            },
+            Err(_) => {
+                println!("\nFailed to read input, Guess Again!");
+                continue;
+            }
+        };
 
-        println!("Your choice: {}", user_choice);
+        println!("Your choice: {}", guess);
 
-        if user_choice > 1000 || user_choice < 0 {
+        if guess > 1000 || guess < 0 {
             println!("You broke the rules!");
             break;
         }
 
-        if user_choice > computers_number {
+        if guess > computers_number {
             rounds += 1;
 
             println!("Too big, try again.");
-        } else if user_choice < computers_number {
+        } else if guess < computers_number {
             rounds += 1;
             println!("Too small, try again.");
         } else {
