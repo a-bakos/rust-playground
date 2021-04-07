@@ -25,6 +25,7 @@ fn main() {
         low: 0.85381,
     };
     let candle_2 = Candle::new();
+    Candle::range(candle_1);
 
     println!("The first candle is {:?}", candle_1);
     println!("The second candle is {:?}", candle_2);
