@@ -1,7 +1,15 @@
 #[derive(Debug)]
+enum Color {
+    Yellow,
+    Red,
+    Blue,
+    Green,
+}
+
+#[derive(Debug)]
 struct Card {
     // struct lives on the stack, except for the color property (heao)
-    color: String,
+    color: Color,
     value: u8,
     action: bool,
 }
@@ -23,9 +31,8 @@ struct Players {
 }
 impl Players {
     fn new() -> Players {
-        Players {
-            player_ids: vec![0],
-        }
+        println!("[ NEW GAME ] No one has joined yet.");
+        Players { player_ids: vec![] }
     }
 }
 
@@ -33,30 +40,38 @@ impl Players {
 struct Player {
     name: String,
     id: i8,
-    cards: PlayerCards,
+    cards: i8, //PlayerCards,
 }
 
 impl Player {
-    fn new(name: String, cards: PlayerCards) -> Player {
+    fn new(name: String) -> Player {
         Player {
             name: name,
             id: 1,
-            cards: cards,
+            cards: 0,
         }
+    }
+
+    fn join_game(&self, game: &mut Players) {
+        &game.player_ids.push(self.id);
+        println!("{} has joined the game.", self.name);
     }
 
     fn add_card(&mut self, card: Card) {}
 }
 
 fn main() {
-    let game_players = Players::new();
-    println!("The players: {:?}", game_players);
+    let mut game_play = Players::new();
 
-    //let player_1 = Player::new(String::from("Abakos"));
-    //println!("Hello player: {:?}", player_1);
+    let player_1 = Player::new(String::from("Abakos"));
+    let player_2 = Player::new(String::from("Frank"));
+    player_1.join_game(&mut game_play);
+    player_2.join_game(&mut game_play);
+
+    println!("The players are: {:?}", game_play);
 
     let single_card = Card {
-        color: String::from("yellow"),
+        color: Color::Yellow,
         value: 8,
         action: false,
     };
