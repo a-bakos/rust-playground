@@ -7,6 +7,7 @@ CMD | DESC
 `main.exe` | Run a Rust program
 `cargo build`| Build with Cargo
 `cargo run` | Build + run with Cargo
+`cargo run -q` | Build + run with no console messages
 `cargo check` | Build check with Cargo
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
