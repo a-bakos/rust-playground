@@ -4,19 +4,15 @@ enum Color {
     Red,
     Blue,
     Green,
+    Black,
 }
 
+// struct lives on the stack, except for the color property (heao)
 #[derive(Debug)]
 struct Card {
-    // struct lives on the stack, except for the color property (heao)
     color: Color,
     value: u8,
     action: bool,
-}
-
-#[derive(Debug)]
-struct CardPool {
-    //	cards:
 }
 
 #[derive(Debug)]
@@ -33,13 +29,6 @@ impl Players {
     fn new() -> Players {
         println!("[ NEW GAME ] No one has joined yet.");
         Players { player_ids: vec![] }
-    }
-
-    fn deal(&self) {
-        for (index, player_id) in self.player_ids.iter().enumerate() {
-            println!("{} - {}", index, player_id);
-            *Player::get_player_by_id(*player_id);
-        }
     }
 }
 
@@ -59,7 +48,7 @@ impl Player {
         }
     }
 
-    fn get_player_by_id(id: i8) {
+    fn get(id: i8) {
         println!("Getting player {}", id);
     }
 
@@ -79,8 +68,6 @@ fn main() {
     player_1.join_game(&mut all_players);
     player_2.join_game(&mut all_players);
     println!("The players are: {:?}", all_players);
-
-    all_players.deal();
 
     let single_card = Card {
         color: Color::Yellow,
