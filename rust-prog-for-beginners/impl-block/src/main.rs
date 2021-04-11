@@ -4,6 +4,8 @@ struct Temperature {
 
 impl Temperature {
     fn freezing() -> Self {
+        // better to use Self because if we change the
+        // Struct's name, we don't have to change the return type
         Self { degrees_c: -10.0 }
     }
 
