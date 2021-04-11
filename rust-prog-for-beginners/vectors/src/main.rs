@@ -13,4 +13,16 @@ fn main() {
     for test in test_scores {
         println!("Test score is {}", test.score);
     }
+
+    // challenge
+    let my_numbers = vec![10, 20, 30, 40];
+
+    for num in &my_numbers {
+        match num {
+            30 => println!("Thirty"),
+            _ => println!("{}", num),
+        }
+    }
+
+    println!("I've got {} numbers.", my_numbers.len());
 }
