@@ -6,6 +6,7 @@ fn main() {
     let coord_x: i32 = 5;
     let coord_y: i32 = -4;
 
+    // destructuring
     let (_x, y) = get_coords(coord_x, coord_y);
 
     if y > 5 {
