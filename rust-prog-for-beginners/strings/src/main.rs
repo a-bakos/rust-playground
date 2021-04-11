@@ -50,7 +50,8 @@ fn main() {
 
     for person in people {
         if person.age <= 10 {
-            person.name_and_color();
+            print(&person.name);
+            print(&person.color);
         }
     }
 }
@@ -63,8 +64,6 @@ struct Person {
     color: String,
 }
 
-impl Person {
-    fn name_and_color(&self) {
-        println!("Name is {}, and fav color is {}", self.name, self.color);
-    }
+fn print(data: &str) {
+    println!("{:?}", data);
 }
