@@ -12,9 +12,13 @@ fn main() {
 
     match student.locker {
         Some(locker) => println!("{} is the owner of locker #{}", student.student, locker),
-        None => println!("No locker has been assigned to this student."),
+        None => println!(
+            "No locker has been assigned to this student: {}",
+            student.student
+        ),
     }
 
+    // Another print..
     println!(
         "Student {:?} is the owner of locker #{:?}",
         student.student, student.locker
