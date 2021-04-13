@@ -12,7 +12,7 @@ CMD | DESC
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo update` | Update a crate (ignore lock)
-`cargo doc --open` | Generate local documentation
+`cargo doc --open` | Generate local documentation (use /// to comment)
 `cargo clippy` | See idiomatic code suggestions
 
 **Rust online playground**
