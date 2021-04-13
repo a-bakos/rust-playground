@@ -4,6 +4,7 @@ struct Locker {
     locker: Option<i32>,
 }
 
+/// Option data type
 fn main() {
     let student = Locker {
         student: String::from("Frank"),
