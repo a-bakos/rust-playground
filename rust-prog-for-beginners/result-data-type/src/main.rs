@@ -42,4 +42,32 @@ fn main() {
 
     // Method 2
     pick_choice("start");
+
+    let customer = Customer {
+        name: String::from("Jason"),
+        age: 22,
+    };
+    let can_customer_buy: Result<bool, String> = can_buy(&customer);
+    println!("{:?}", can_customer_buy);
+}
+
+#[derive(Debug)]
+struct Customer {
+    name: String,
+    age: i32,
+}
+
+fn can_buy(customer: &Customer) -> Result<bool, String> {
+    let mut can_buy: bool = false;
+
+    if customer.age >= 21 {
+        can_buy = true;
+    } else {
+        can_buy = false;
+    }
+
+    match can_buy {
+        true => Ok(true),
+        false => Err("Customer is under 21".to_owned()),
+    }
 }
