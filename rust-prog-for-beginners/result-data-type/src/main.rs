@@ -43,6 +43,8 @@ fn main() {
     // Method 2
     pick_choice("start");
 
+    // Results challenge
+
     let customer = Customer {
         name: String::from("Jason"),
         age: 12,
@@ -54,7 +56,48 @@ fn main() {
         Ok(_) => println!("Can buy"),
         Err(e) => println!("{}", e),
     }
+
+    // Result and question mark operator challenge
+    let maintenance = Employee {
+        emp_type: Employees::Maintenance,
+        active: true,
+    };
+    let enter_maintenance = try_enter(&maintenance);
+    let marketing = Employee {
+        emp_type: Employees::Marketing,
+        active: true,
+    };
+    let enter_marketing = try_enter(&marketing);
+    let manager = Employee {
+        emp_type: Employees::Manager,
+        active: false,
+    };
+    let enter_manager = try_enter(&manager);
+    let supervisor = Employee {
+        emp_type: Employees::Supervisor,
+        active: true,
+    };
+    let enter_supervisor = try_enter(&supervisor);
+    let kitchen = Employee {
+        emp_type: Employees::Kitchen,
+        active: true,
+    };
+    let enter_kitchen = try_enter(&kitchen);
+    let tech = Employee {
+        emp_type: Employees::Tech,
+        active: true,
+    };
+    let enter_tech = try_enter(&tech);
+
+    println!("{:?}", enter_maintenance);
+    println!("{:?}", enter_marketing);
+    println!("{:?}", enter_manager);
+    println!("{:?}", enter_supervisor);
+    println!("{:?}", enter_kitchen);
+    println!("{:?}", enter_tech);
 }
+
+// Results challenge
 
 #[derive(Debug)]
 struct Customer {
@@ -67,5 +110,37 @@ fn can_buy(customer: &Customer) -> Result<(), String> {
         Ok(())
     } else {
         Err("Customer is under 21".to_owned())
+    }
+}
+
+// Result and question mark operator challenge
+
+#[derive(Debug)]
+enum Employees {
+    Maintenance,
+    Marketing,
+    Manager,
+    Supervisor,
+    Kitchen,
+    Tech,
+}
+
+#[derive(Debug)]
+struct Employee {
+    emp_type: Employees,
+    active: bool,
+}
+
+fn try_enter(emp: &Employee) -> Result<(), String> {
+    match emp.active {
+        true => match emp.emp_type {
+            Employees::Maintenance => Ok(()),
+            Employees::Marketing => Ok(()),
+            Employees::Manager => Ok(()),
+            Employees::Supervisor => Err("No access".to_owned())?,
+            Employees::Kitchen => Err("No access".to_owned())?,
+            Employees::Tech => Err("No access".to_owned())?,
+        },
+        false => Err("Inactive card".to_owned()),
     }
 }
