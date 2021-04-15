@@ -60,41 +60,53 @@ fn main() {
     // Result and question mark operator challenge
     let maintenance = Employee {
         emp_type: Employees::Maintenance,
-        active: true,
+        active: Status::Active,
     };
-    let enter_maintenance = try_enter(&maintenance);
     let marketing = Employee {
         emp_type: Employees::Marketing,
-        active: true,
+        active: Status::Active,
     };
-    let enter_marketing = try_enter(&marketing);
     let manager = Employee {
         emp_type: Employees::Manager,
-        active: false,
+        active: Status::Terminated,
     };
-    let enter_manager = try_enter(&manager);
     let supervisor = Employee {
         emp_type: Employees::Supervisor,
-        active: true,
+        active: Status::Terminated,
     };
-    let enter_supervisor = try_enter(&supervisor);
     let kitchen = Employee {
         emp_type: Employees::Kitchen,
-        active: true,
+        active: Status::Active,
     };
-    let enter_kitchen = try_enter(&kitchen);
     let tech = Employee {
         emp_type: Employees::Tech,
-        active: true,
+        active: Status::Active,
     };
-    let enter_tech = try_enter(&tech);
 
-    println!("{:?}", enter_maintenance);
-    println!("{:?}", enter_marketing);
-    println!("{:?}", enter_manager);
-    println!("{:?}", enter_supervisor);
-    println!("{:?}", enter_kitchen);
-    println!("{:?}", enter_tech);
+    match print_access(&maintenance) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
+    match print_access(&marketing) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
+    match print_access(&manager) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
+    match print_access(&supervisor) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
+    match print_access(&kitchen) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
+    match print_access(&tech) {
+        Err(e) => println!("Access denied {:?}", e),
+        _ => (),
+    }
 }
 
 // Results challenge
@@ -128,19 +140,31 @@ enum Employees {
 #[derive(Debug)]
 struct Employee {
     emp_type: Employees,
-    active: bool,
+    active: Status,
+}
+
+#[derive(Debug)]
+enum Status {
+    Active,
+    Terminated,
 }
 
 fn try_enter(emp: &Employee) -> Result<(), String> {
     match emp.active {
-        true => match emp.emp_type {
-            Employees::Maintenance => Ok(()),
-            Employees::Marketing => Ok(()),
-            Employees::Manager => Ok(()),
-            Employees::Supervisor => Err("No access".to_owned())?,
-            Employees::Kitchen => Err("No access".to_owned())?,
-            Employees::Tech => Err("No access".to_owned())?,
-        },
-        false => Err("Inactive card".to_owned()),
+        Status::Terminated => return Err("Inactive card".to_owned()),
+        _ => (),
     }
+
+    match emp.emp_type {
+        Employees::Maintenance => Ok(()),
+        Employees::Marketing => Ok(()),
+        Employees::Manager => Ok(()),
+        _ => Err("No access".to_owned()),
+    }
+}
+
+fn print_access(emp: &Employee) -> Result<(), String> {
+    try_enter(emp)?;
+    println!("Access ok!");
+    Ok(())
 }
