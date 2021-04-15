@@ -45,10 +45,15 @@ fn main() {
 
     let customer = Customer {
         name: String::from("Jason"),
-        age: 22,
+        age: 12,
     };
-    let can_customer_buy: Result<bool, String> = can_buy(&customer);
+    let can_customer_buy: Result<(), String> = can_buy(&customer);
     println!("{:?}", can_customer_buy);
+
+    match can_customer_buy {
+        Ok(_) => println!("Can buy"),
+        Err(e) => println!("{}", e),
+    }
 }
 
 #[derive(Debug)]
@@ -57,17 +62,10 @@ struct Customer {
     age: i32,
 }
 
-fn can_buy(customer: &Customer) -> Result<bool, String> {
-    let mut can_buy: bool = false;
-
+fn can_buy(customer: &Customer) -> Result<(), String> {
     if customer.age >= 21 {
-        can_buy = true;
+        Ok(())
     } else {
-        can_buy = false;
-    }
-
-    match can_buy {
-        true => Ok(true),
-        false => Err("Customer is under 21".to_owned()),
+        Err("Customer is under 21".to_owned())
     }
 }
