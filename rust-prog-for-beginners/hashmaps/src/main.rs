@@ -32,4 +32,18 @@ fn main() {
     for (key, value) in lockers.iter() {
         println!("{} {:?}", key, value);
     }
+
+    // Hashmap challenge
+    let mut stock = HashMap::new();
+    stock.insert(String::from("Chair"), 5);
+    stock.insert(String::from("Bed"), 3);
+    stock.insert(String::from("Table"), 2);
+    stock.insert(String::from("Couch"), 0);
+
+    for (furniture, on_stock) in stock.iter() {
+        match on_stock {
+            0 => println!("{} - Out of stock", furniture),
+            _ => println!("{}: {}", furniture, on_stock),
+        }
+    }
 }
