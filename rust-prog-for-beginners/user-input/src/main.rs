@@ -1,6 +1,6 @@
 use std::io;
 
-// This Result type is different in the io lib because there's so many things
+// This Result type is different in the io module because there's so many things
 // can go wrong with io, the Err type is already defined, so only the
 // success return type is needed
 fn get_input() -> io::Result<String> {
