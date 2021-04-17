@@ -54,6 +54,7 @@ fn main() {
         let stock_count = if on_stock == &0 {
             "Out of stock".to_owned()
         } else {
+            // Format macro turns it into a String
             format!("{:?}", on_stock)
         };
         println!("item={:?}, count={:?}", furniture, stock_count);
