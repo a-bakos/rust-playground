@@ -40,10 +40,14 @@ fn main() {
     stock.insert(String::from("Table"), 2);
     stock.insert(String::from("Couch"), 0);
 
+    let mut total_stock: i32 = 0;
     for (furniture, on_stock) in stock.iter() {
+        total_stock = total_stock + on_stock;
         match on_stock {
             0 => println!("{} - Out of stock", furniture),
             _ => println!("{}: {}", furniture, on_stock),
         }
     }
+
+    println!("Total stock items: {}", total_stock);
 }
