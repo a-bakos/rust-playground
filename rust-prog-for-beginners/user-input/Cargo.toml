@@ -1,5 +1,5 @@
 [package]
-name = "derive"
+name = "user-input"
 version = "0.1.0"
 authors = ["a-bakos"]
 edition = "2018"
