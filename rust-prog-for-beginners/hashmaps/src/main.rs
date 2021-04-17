@@ -47,6 +47,16 @@ fn main() {
             0 => println!("{} - Out of stock", furniture),
             _ => println!("{}: {}", furniture, on_stock),
         }
+
+        // Another way to print
+        // Need to borrow the 0 zero because when we iterate through a
+        // hashmap, the key and value are automatically borrowed
+        let stock_count = if on_stock == &0 {
+            "Out of stock".to_owned()
+        } else {
+            format!("{:?}", on_stock)
+        };
+        println!("item={:?}, count={:?}", furniture, stock_count);
     }
 
     println!("Total stock items: {}", total_stock);
