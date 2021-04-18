@@ -36,10 +36,12 @@ fn print_power_state(state: PowerState) {
 
 fn main() {
     let mut user_input_buffer: String = String::new();
+    println!("Enter power state:");
     let user_input_status = io::stdin().read_line(&mut user_input_buffer);
 
     // is_ok is defined on Results
     if user_input_status.is_ok() {
+        // convert the String to a string slice by referencing
         match PowerState::new(&user_input_buffer) {
             Some(state) => print_power_state(state),
             None => println!("Invalid power state"),
