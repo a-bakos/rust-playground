@@ -6,31 +6,45 @@ enum PowerState {
     Reboot,
     Shutdown,
     Hibernate,
-    Error,
+}
+
+impl PowerState {
+    fn new(state: &str) -> Option<PowerState> {
+        let state: String = state.trim().to_lowercase();
+        // String -> &str
+        match state.as_str() {
+            "off" => Some(PowerState::Off),
+            "sleep" => Some(PowerState::Sleep),
+            "reboot" => Some(PowerState::Reboot),
+            "shutdown" => Some(PowerState::Shutdown),
+            "hibernate" => Some(PowerState::Hibernate),
+            _ => None,
+        }
+    }
 }
 
 fn print_power_state(state: PowerState) {
+    use PowerState::*; // shorthand for PowerState
     match state {
-        PowerState::Off => println!("Turning off"),
-        PowerState::Sleep => println!("Going to sleep"),
-        PowerState::Reboot => println!("Rebooting"),
-        PowerState::Shutdown => println!("Shutting down"),
-        PowerState::Hibernate => println!("Hibernating"),
-        PowerState::Error => println!("Error!"),
+        Off => println!("Turning off"),
+        Sleep => println!("Going to sleep"),
+        Reboot => println!("Rebooting"),
+        Shutdown => println!("Shutting down"),
+        Hibernate => println!("Hibernating"),
     }
 }
 
 fn main() {
     let mut user_input_buffer: String = String::new();
-    io::stdin().read_line(&mut user_input_buffer);
-    let the_input = user_input_buffer.trim().to_lowercase();
-    let the_state = match the_input.as_str() {
-        "off" => PowerState::Off,
-        "sleep" => PowerState::Sleep,
-        "reboot" => PowerState::Reboot,
-        "shutdown" => PowerState::Shutdown,
-        "hibernate" => PowerState::Hibernate,
-        _ => PowerState::Error,
-    };
-    print_power_state(the_state);
+    let user_input_status = io::stdin().read_line(&mut user_input_buffer);
+
+    // is_ok is defined on Results
+    if user_input_status.is_ok() {
+        match PowerState::new(&user_input_buffer) {
+            Some(state) => print_power_state(state),
+            None => println!("Invalid power state"),
+        }
+    } else {
+        println!("Error reading input");
+    }
 }
