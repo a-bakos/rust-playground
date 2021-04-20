@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::io;
 
 #[derive(Debug)]
@@ -26,11 +27,19 @@ impl Menu {
     }
 }
 
+fn get_bill(bill_name: String, bills: HashMap<String, i32>) -> i32 {
+    let bill_val = bills.get(&bill_name);
+    bill_val
+}
+
 fn menu_placeholder() {
     println!("Placeholder");
 }
 
 fn main() {
+    let mut bills: HashMap<String, i32> = HashMap::new();
+    bills.insert(String::from("testbill"), 250);
+
     loop {
         let mut buffer: String = String::new();
         println!("What would you like to do?");
