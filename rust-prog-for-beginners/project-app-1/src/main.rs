@@ -2,6 +2,17 @@ use std::collections::HashMap;
 use std::io;
 
 #[derive(Debug)]
+struct Bill {
+    name: String,
+    balance: f64,
+}
+
+#[derive(Debug)]
+struct Bills {
+    bills: Vec<Bill>,
+}
+
+#[derive(Debug)]
 enum Menu {
     Add,
     Remove,
@@ -37,8 +48,8 @@ fn menu_placeholder() {
 }
 
 fn main() {
-    let mut bills: HashMap<String, i32> = HashMap::new();
-    bills.insert(String::from("testbill"), 250);
+    let mut my_bills: HashMap<String, i32> = HashMap::new();
+    my_bills.insert(String::from("testbill"), 250);
 
     loop {
         let mut buffer: String = String::new();
