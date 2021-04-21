@@ -6,10 +6,35 @@ struct Bill {
     name: String,
     balance: f64,
 }
+impl Bill {
+    fn new(name: String, bal: f64) -> Self {
+        Bill {
+            name: name,
+            balance: bal,
+        }
+    }
+}
 
 #[derive(Debug)]
 struct Bills {
-    bills: Vec<Bill>,
+    inner: Vec<Bill>,
+}
+impl Bills {
+    fn new() -> Self {
+        Self { inner: vec![] }
+    }
+
+    fn add(&mut self, bill: Bill) {
+        self.inner.push(bill);
+    }
+
+    fn get_all(&self) -> &Vec<Bill> {
+        &self.inner
+    }
+
+    //fn view(self, bill_name: String) -> f64 {
+    //self.inner.get(bill_name)
+    //}
 }
 
 #[derive(Debug)]
@@ -38,19 +63,7 @@ impl Menu {
     }
 }
 
-fn get_bill(bill_name: String, bills: HashMap<String, i32>) -> i32 {
-    let bill_val = bills.get(&bill_name);
-    bill_val
-}
-
-fn menu_placeholder() {
-    println!("Placeholder");
-}
-
 fn main() {
-    let mut my_bills: HashMap<String, i32> = HashMap::new();
-    my_bills.insert(String::from("testbill"), 250);
-
     loop {
         let mut buffer: String = String::new();
         println!("What would you like to do?");
@@ -61,9 +74,6 @@ fn main() {
             match menu_selected {
                 Some(menu_choice) => {
                     println!("{:?}", menu_choice);
-                    if menu_choice == menu_selected {
-                        println!("yas");
-                    }
                 }
                 None => println!("Invalid menu"),
             }
