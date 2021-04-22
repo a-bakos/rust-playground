@@ -71,13 +71,37 @@ fn get_input() -> String {
     }
 }
 
-fn main() {
-    loop {
-        println!("What would you like to do?");
-        let menu = get_input();
+fn add_bill_menu(bill: &mut Bills) {
+    println!("Add bill");
+}
+fn view_bill_menu(bills: &Bills) {
+    println!("View bill");
+}
 
-        if menu == "exit" {
-            break;
+fn main_menu() {
+    let mut bills = Bills::new();
+
+    loop {
+        show_menu();
+        let input = get_input();
+        match input.as_str() {
+            "1" => add_bill_menu(&mut bills),
+            "2" => view_bill_menu(&bills),
+            _ => break,
         }
     }
+}
+fn show_menu() {
+    println!("");
+    println!("__ Manage Bills App __");
+    println!("");
+    println!("1 - Add Bill");
+    println!("2 - View Bills");
+    // println!("3 - Delete Bill");
+    println!("");
+    println!("Enter menu:");
+}
+
+fn main() {
+    main_menu();
 }
