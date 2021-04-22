@@ -31,10 +31,6 @@ impl Bills {
     fn get_all(&self) -> &Vec<Bill> {
         &self.inner
     }
-
-    //fn view(self, bill_name: String) -> f64 {
-    //self.inner.get(bill_name)
-    //}
 }
 
 #[derive(Debug)]
@@ -63,22 +59,24 @@ impl Menu {
     }
 }
 
+fn get_input() -> String {
+    let mut buffer: String = String::new();
+    let user_input_status = io::stdin().read_line(&mut buffer); // returns Result type: Ok/Err
+
+    if user_input_status.is_ok() {
+        println!("{:?}", buffer);
+        buffer.trim().to_owned()
+    } else {
+        "Invalid menu choice".to_owned()
+    }
+}
+
 fn main() {
     loop {
-        let mut buffer: String = String::new();
         println!("What would you like to do?");
-        let user_input_status = io::stdin().read_line(&mut buffer); // returns Result type: Ok/Err
+        let menu = get_input();
 
-        if user_input_status.is_ok() {
-            let menu_selected: Option<Menu> = Menu::new(&buffer);
-            match menu_selected {
-                Some(menu_choice) => {
-                    println!("{:?}", menu_choice);
-                }
-                None => println!("Invalid menu"),
-            }
-        } else {
-            println!("Error reading input!");
+        if menu == "exit" {
             break;
         }
     }
