@@ -71,11 +71,27 @@ fn get_input() -> String {
     }
 }
 
-fn add_bill_menu(bill: &mut Bills) {
-    println!("Add bill");
+fn add_bill_menu(bills: &mut Bills) {
+    // get bill name
+    let name = get_input();
+    // get bill amount
 }
+
 fn view_bill_menu(bills: &Bills) {
     println!("View bill");
+}
+
+fn get_bill_amount() -> f64 {
+    println!("Enter amount:");
+    loop {
+        let amount: String = get_input();
+        let _amount: f64 = match amount.trim().parse() {
+            Ok(num) => {
+                return num;
+            }
+            Err(_) => continue,
+        };
+    }
 }
 
 fn main_menu() {
