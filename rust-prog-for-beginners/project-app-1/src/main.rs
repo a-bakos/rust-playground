@@ -72,9 +72,10 @@ fn get_input() -> String {
 }
 
 fn add_bill_menu(bills: &mut Bills) {
-    // get bill name
-    let name = get_input();
-    // get bill amount
+    let name: String = get_input();
+    let amount: f64 = get_bill_amount();
+    let current_bill = Bill::new(name, amount);
+    bills.inner.push(current_bill);
 }
 
 fn view_bill_menu(bills: &Bills) {
