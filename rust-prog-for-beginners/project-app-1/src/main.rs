@@ -85,12 +85,11 @@ fn get_bill_amount() -> f64 {
     println!("Enter amount:");
     loop {
         let amount: String = get_input();
-        let _amount: f64 = match amount.trim().parse() {
-            Ok(num) => {
-                return num;
-            }
-            Err(_) => continue,
-        };
+        let parsed: Result<f64, _> = amount.parse();
+        match parsed {
+            Ok(num) => return num,
+            Err(_) => println!("Enter a valid number!"),
+        }
     }
 }
 
