@@ -64,7 +64,7 @@ fn get_input() -> String {
     let user_input_status = io::stdin().read_line(&mut buffer); // returns Result type: Ok/Err
 
     if user_input_status.is_ok() {
-        println!("{:?}", buffer);
+        println!("{}", buffer);
         buffer.trim().to_owned()
     } else {
         "Invalid menu choice".to_owned()
@@ -76,10 +76,13 @@ fn add_bill_menu(bills: &mut Bills) {
     let amount: f64 = get_bill_amount();
     let current_bill = Bill::new(name, amount);
     bills.add(current_bill);
+    println!("Bill successfully added");
 }
 
-fn view_bill_menu(bills: &Bills) {
-    println!("View bill");
+fn view_bills_menu(bills: &Bills) {
+    for bill in bills.get_all() {
+        println!("{:?}", bill);
+    }
 }
 
 fn get_bill_amount() -> f64 {
@@ -102,7 +105,7 @@ fn main_menu() {
         let input = get_input();
         match input.as_str() {
             "1" => add_bill_menu(&mut bills),
-            "2" => view_bill_menu(&bills),
+            "2" => view_bills_menu(&bills),
             _ => break,
         }
     }
@@ -113,7 +116,6 @@ fn show_menu() {
     println!("");
     println!("1 - Add Bill");
     println!("2 - View Bills");
-    // println!("3 - Delete Bill");
     println!("");
     println!("Enter menu:");
 }
