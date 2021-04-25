@@ -26,3 +26,6 @@ https://github.com/rust-lang/rust-enhanced
 https://github.com/rust-lang/rustfmt
 
 https://packagecontrol.io/packages/RustFmt
+
+**Other**
+https://cheats.rs/
