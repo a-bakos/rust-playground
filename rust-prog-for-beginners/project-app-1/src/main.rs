@@ -41,6 +41,16 @@ impl Bills {
     fn remove(&mut self, name: &str) -> bool {
         self.inner.remove(name).is_some()
     }
+
+    fn update(&mut self, name: &str, amount: f64) -> bool {
+        match self.inner.get_mut(name) {
+            Some(bill) => {
+                bill.balance = amount;
+                true
+            }
+            None => false,
+        }
+    }
 }
 
 #[derive(Debug)]
@@ -107,6 +117,20 @@ fn view_bills_menu(bills: &Bills) {
     }
 }
 
+fn edit_bill_menu(bills: &mut Bills) {
+    for bill in bills.get_all() {
+        println!("{:?}", bill);
+    }
+    let name = get_input();
+    let amount = get_bill_amount();
+
+    if bills.update(&name, amount) {
+        println!("Updated");
+    } else {
+        println!("Bill not found");
+    }
+}
+
 fn get_bill_amount() -> f64 {
     println!("Enter amount:");
     loop {
@@ -129,6 +153,7 @@ fn main_menu() {
             "1" => add_bill_menu(&mut bills),
             "2" => view_bills_menu(&bills),
             "3" => remove_bill_menu(&mut bills),
+            "4" => edit_bill_menu(&mut bills),
             _ => break,
         }
     }
@@ -140,6 +165,7 @@ fn show_menu() {
     println!("1 - Add Bill");
     println!("2 - View Bills");
     println!("3 - Remove Bill");
+    println!("4 - Edit Bill");
     println!("");
     println!("Enter menu:");
 }
