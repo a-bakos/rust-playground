@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::io;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct Bill {
     name: String,
     balance: f64,
@@ -17,19 +17,29 @@ impl Bill {
 
 #[derive(Debug)]
 struct Bills {
-    inner: Vec<Bill>,
+    inner: HashMap<String, Bill>,
 }
 impl Bills {
     fn new() -> Self {
-        Self { inner: vec![] }
+        Self {
+            inner: HashMap::new(),
+        }
     }
 
     fn add(&mut self, bill: Bill) {
-        self.inner.push(bill);
+        self.inner.insert(bill.name.clone(), bill);
     }
 
-    fn get_all(&self) -> &Vec<Bill> {
-        &self.inner
+    fn get_all(&self) -> Vec<Bill> {
+        let mut bills = vec![];
+        for bill in self.inner.values() {
+            bills.push(bill.clone());
+        }
+        bills
+    }
+
+    fn remove(&mut self, name: &str) -> bool {
+        self.inner.remove(name).is_some()
     }
 }
 
@@ -79,6 +89,18 @@ fn add_bill_menu(bills: &mut Bills) {
     println!("Bill successfully added");
 }
 
+fn remove_bill_menu(bills: &mut Bills) {
+    for bill in bills.get_all() {
+        println!("{:?}", bill);
+    }
+    let input = get_input();
+    if bills.remove(&input) {
+        println!("Removed");
+    } else {
+        println!("Bill not found");
+    }
+}
+
 fn view_bills_menu(bills: &Bills) {
     for bill in bills.get_all() {
         println!("{:?}", bill);
@@ -106,6 +128,7 @@ fn main_menu() {
         match input.as_str() {
             "1" => add_bill_menu(&mut bills),
             "2" => view_bills_menu(&bills),
+            "3" => remove_bill_menu(&mut bills),
             _ => break,
         }
     }
@@ -116,6 +139,7 @@ fn show_menu() {
     println!("");
     println!("1 - Add Bill");
     println!("2 - View Bills");
+    println!("3 - Remove Bill");
     println!("");
     println!("Enter menu:");
 }
