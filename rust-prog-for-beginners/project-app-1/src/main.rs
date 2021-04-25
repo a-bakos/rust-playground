@@ -8,10 +8,7 @@ struct Bill {
 }
 impl Bill {
     fn new(name: String, bal: f64) -> Self {
-        Bill {
-            name: name,
-            balance: bal,
-        }
+        Bill { name, balance: bal }
     }
 }
 
@@ -60,7 +57,7 @@ fn get_input() -> Option<String> {
         println!("Please enter your data again");
     }
     let input = buffer.trim().to_owned();
-    if &input == "" {
+    if input.is_empty() {
         None
     } else {
         Some(input)
@@ -129,7 +126,7 @@ fn get_bill_amount() -> Option<f64> {
             Some(amount) => amount,
             None => return None,
         };
-        if &amount == "" {
+        if amount.is_empty() {
             return None;
         }
         let parsed: Result<f64, _> = amount.parse();
@@ -159,14 +156,11 @@ fn main_menu() {
     }
 }
 fn show_menu() {
-    println!("");
     println!("__ Manage Bills App __");
-    println!("");
     println!("1 - Add Bill");
     println!("2 - View Bills");
     println!("3 - Remove Bill");
     println!("4 - Edit Bill");
-    println!("");
     println!("Enter menu:");
 }
 
