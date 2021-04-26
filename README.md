@@ -10,6 +10,7 @@ CMD | DESC
 `cargo run -q` | Build + run with no console messages
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
+`cargo test --doc` | Further documentation for testing
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo update` | Update a crate (ignore lock)
