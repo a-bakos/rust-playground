@@ -15,10 +15,10 @@ fn find_user(name: &str) -> Option<i32> {
 }
 
 fn main() {
-    let name: &str = "tim";
-    let user = find_user(name).map(|found| User {
-        id: found,
-        name: name.to_string(),
+    let name: &str = "dave";
+    let user = find_user(name).map(|user_id| User {
+        id: user_id,
+        name: name.to_owned(),
     });
     match user {
         Some(u) => println!("{:?}", u),
