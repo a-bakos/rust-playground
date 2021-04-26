@@ -9,6 +9,7 @@ CMD | DESC
 `cargo run` | Build + run with Cargo
 `cargo run -q` | Build + run with no console messages
 `cargo check` | Build check with Cargo
+`cargo test` | Run code test (test mod's and #[cfg(test)])
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo update` | Update a crate (ignore lock)
