@@ -20,5 +20,8 @@ fn main() {
         id: found,
         name: name.to_string(),
     });
-    println!("{:?}", user);
+    match user {
+        Some(u) => println!("{:?}", u),
+        None => println!("User not found"),
+    }
 }
