@@ -15,7 +15,7 @@ fn find_user(name: &str) -> Option<i32> {
 }
 
 fn main() {
-    let name: &str = "dave";
+    let name: &str = "tim";
     let user = find_user(name).map(|found| User {
         id: found,
         name: name.to_string(),
