@@ -18,16 +18,15 @@ CMD | DESC
 `cargo clippy` | See idiomatic code suggestions
 `rustup doc` | Open documentation
 
-**Rust online playground**
-https://play.rust-lang.org/
+**Rust online playground** - https://play.rust-lang.org/
 
-**Sublime Text 3: Rust Enhanced package**
-https://github.com/rust-lang/rust-enhanced
+**Sublime Text 3: Rust Enhanced package** - https://github.com/rust-lang/rust-enhanced
 
 **Coding Standards: RustFMT**
-https://github.com/rust-lang/rustfmt
 
-https://packagecontrol.io/packages/RustFmt
+- https://github.com/rust-lang/rustfmt
+- https://packagecontrol.io/packages/RustFmt
 
 **Other**
-https://cheats.rs/
+
+- https://cheats.rs/
