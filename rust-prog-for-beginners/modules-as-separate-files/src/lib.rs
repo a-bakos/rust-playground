@@ -1,4 +1,7 @@
-mod helpers; // A)
+// Add pub to mod's so they're accessible in
+// demo.rs
+pub mod group; // C)
+pub mod helpers; // A)
 
 pub fn print_from_lib() {
     // B)
@@ -10,4 +13,7 @@ pub fn print_from_lib() {
     helpers::print_from_helper();
     // B)
     print_again();
+
+    // C)
+    group::g1::g1_hello();
 }
