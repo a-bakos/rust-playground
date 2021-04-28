@@ -34,8 +34,15 @@ fn main() {
     // test the fn
     println!("{}", math(2, 2, add));
 
-    let sub = Box::new(|a, b| a - b);
+    let name = "Frank";
+    // when you Box something, it needs to own
+    // everything, so we move name into the box
+    let sub = Box::new(move |a, b| {
+        println!("Subtracting for {}", name);
+        a - b
+    });
     let mul = Box::new(|a, b| a * b);
+
     println!("{}", math(2, 2, sub));
     println!("{}", math(2, 2, mul));
 }
