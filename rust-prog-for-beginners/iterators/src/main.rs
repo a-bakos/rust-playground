@@ -37,4 +37,14 @@ fn main() {
     // take
     // take the first X number of items
     let take: Option<i32> = numbers.iter().take(3).collect();
+
+    let data = vec![1, 2, 3, 4, 5];
+    let times_three: Vec<_> = data
+        .iter()
+        .map(|num| num * 3)
+        .filter(|num| num > &10)
+        .collect();
+    for num in times_three {
+        println!("{}", num);
+    }
 }
