@@ -23,7 +23,37 @@ impl Noise for Dog {
     }
 }
 
+trait Perimeter {
+    fn calc_perimeter(&self) -> i32;
+}
+fn perimeter(thing: impl Perimeter) {
+    println!("{:?}", thing.calc_perimeter());
+}
+
+struct Triangle {
+    a: i32,
+    b: i32,
+    c: i32,
+}
+impl Perimeter for Triangle {
+    fn calc_perimeter(&self) -> i32 {
+        self.a + self.b + self.c
+    }
+}
+
+struct Square {
+    a: i32,
+}
+impl Perimeter for Square {
+    fn calc_perimeter(&self) -> i32 {
+        self.a * 4
+    }
+}
+
 fn main() {
     hello(Person {});
     hello(Dog {});
+
+    perimeter(Triangle { a: 1, b: 2, c: 3 });
+    perimeter(Square { a: 10 });
 }
