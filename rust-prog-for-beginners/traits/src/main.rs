@@ -50,10 +50,34 @@ impl Perimeter for Square {
     }
 }
 
+// Default trait
+#[derive(Debug)]
+struct Package {
+    weight: f64,
+}
+
+impl Package {
+    fn new(weight: f64) -> Self {
+        Self { weight }
+    }
+}
+
+impl Default for Package {
+    fn default() -> Self {
+        Self { weight: 3.0 }
+    }
+}
+
 fn main() {
     hello(Person {});
     hello(Dog {});
 
     perimeter(Triangle { a: 1, b: 2, c: 3 });
     perimeter(Square { a: 10 });
+
+    // Default trait
+    // This package now has a default weight.
+    // Use Default if your new() function
+    // doesn't take any arguments.
+    let package = Package::default();
 }
