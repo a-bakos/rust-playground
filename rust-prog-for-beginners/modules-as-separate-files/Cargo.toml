@@ -1,0 +1,14 @@
+[package]
+name = "modules-as-separate-files"
+version = "0.1.0"
+authors = ["a-bakos"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# for modularizing the code
+[lib]
+name = "demo" # name of lib
+path = "src/lib.rs"
+
+[dependencies]

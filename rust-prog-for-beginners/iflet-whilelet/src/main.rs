@@ -36,6 +36,12 @@ fn main() {
         println!("Loop");
         data = None;
     }
+
+    let numbers = vec![1, 2, 3];
+    let mut number_iter = numbers.iter();
+    while let Some(num) = numbers.iter().next() {
+        println!("num = {:?}",);
+    }
 }
 
 enum Color {
