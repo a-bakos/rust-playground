@@ -84,6 +84,10 @@ impl Records {
             .filter(|rec| rec.name.to_lowercase().contains(&name.to_lowercase())) // for .contains() won't have to be an exact match
             .collect()
     }
+
+    fn remove(&mut self, id: i64) -> Option<Record> {
+        self.inner.remove(&id)
+    }
 }
 
 // dedicated error type for parsing
@@ -177,6 +181,9 @@ enum Command {
     Search {
         query: String,
     },
+    Remove {
+        id: i64,
+    },
 }
 
 fn main() {
@@ -214,6 +221,15 @@ fn run(opt: Opt) -> Result<(), std::io::Error> {
                 for rec in results {
                     println!("{:?}", rec);
                 }
+            }
+        }
+        Command::Remove { id } => {
+            let mut recs = load_records(opt.data_file.clone(), opt.verbose)?;
+            if recs.remove(id).is_some() {
+                save_records(opt.data_file, recs)?;
+                println!("Record deleted");
+            } else {
+                println!("Record not found");
             }
         }
     }
