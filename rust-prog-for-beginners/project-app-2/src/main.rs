@@ -1,3 +1,10 @@
+use std::collections::HashMap;
+use std::fs::{File, OpenOptions};
+use std::io::{Read, Write};
+use std::path::PathBuf;
+use structopt::StructOpt;
+use thiserror::Error;
+
 // Project 2: Contact manager
 //
 // User stories:
@@ -32,11 +39,6 @@ struct Record {
     email: Option<String>,
 }
 
-use std::collections::HashMap;
-use std::io::File;
-use std::path::PathBuf;
-use thiserror::Error;
-
 #[derive(Debug)]
 struct Records {
     inner: HashMap<i64, Record>, // K V
@@ -51,6 +53,18 @@ impl Records {
 
     fn add(&mut self, record: Record) {
         self.inner.insert(record.id, record);
+    }
+
+    // not a borrow, so once we use this function, the "inner" data will be gone
+    // and we won't be able to access Records struct anymore
+    fn into_vec(mut self) -> Vec<Record> {
+        // .drain() will go through the hashmap and will drain all the values into
+        // something else. so it's moving everything out of the "inner" hashmap
+        // into another structure
+        // kv is a tuple
+        let mut records: Vec<_> = self.inner.drain().map(|kv| kv.1).collect();
+        records.sort_by_key(|rec| rec.id);
+        records
     }
 }
 
@@ -79,7 +93,7 @@ fn load_records(filename: PathBuf, verbose: bool) -> std::io::Result<Records> {
 
 fn parse_records(buffer: String, verbose: bool) -> Records {
     let mut recs = Records::new();
-    for (num, record) in recs.split('\n').enumerate() {
+    for (num, record) in buffer.split('\n').enumerate() {
         // .enumerate() gives us a tuple, with iteration number and the current data
         if record != "" {
             match parse_record(record) {
@@ -121,6 +135,40 @@ fn parse_record(record: &str) -> Result<Record, ParseError> {
     Ok(Record { id, name, email })
 }
 
+// crate: structopt
+// allows you to create a structure, and it'll automatically
+// turn it into command line options that you can use
+#[derive(StructOpt, Debug)]
+#[structopt(about = "project 2: contact manager")]
+struct Opt {
+    #[structopt(short, parse(from_os_str), default_value = "p2_data.csv")]
+    data_file: PathBuf,
+    #[structopt(subcommand)]
+    cmd: Command,
+    #[structopt(short, help = "verbose")]
+    verbose: bool,
+}
+#[derive(StructOpt, Debug)]
+enum Command {
+    List {},
+}
+
 fn main() {
-    println!("Hello, world!");
+    let opt = Opt::from_args();
+    if let Err(e) = run(opt) {
+        println!("an error occured: {}", e);
+    }
+}
+
+fn run(opt: Opt) -> Result<(), std::io::Error> {
+    match opt.cmd {
+        // .. is to ignore all information in the List
+        Command::List { .. } => {
+            let recs = load_records(opt.data_file, opt.verbose)?;
+            for record in recs.into_vec() {
+                println!("{:?}", record);
+            }
+        }
+    }
+    Ok(())
 }
