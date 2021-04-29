@@ -160,6 +160,11 @@ struct Opt {
 }
 #[derive(StructOpt, Debug)]
 enum Command {
+    Add {
+        name: String,
+        #[structopt(short)]
+        email: Option<String>,
+    },
     List {},
 }
 
@@ -172,6 +177,16 @@ fn main() {
 
 fn run(opt: Opt) -> Result<(), std::io::Error> {
     match opt.cmd {
+        Command::Add { name, email } => {
+            let mut recs = load_records(opt.data_file.clone(), opt.verbose)?;
+            let next_id = recs.next_id();
+            recs.add(Record {
+                id: next_id,
+                name,
+                email,
+            });
+            save_records(opt.data_file, recs)?;
+        }
         // .. is to ignore all information in the List
         Command::List { .. } => {
             let recs = load_records(opt.data_file, opt.verbose)?;
@@ -184,21 +199,26 @@ fn run(opt: Opt) -> Result<(), std::io::Error> {
 }
 
 fn save_records(filename: PathBuf, records: Records) -> std::io::Result<()> {
-    let mut file = OpenOptions::new()
+    let mut file = OpenOptions::new() // openoptions to configure how to open the file
         .write(true)
-        .truncate(true)
+        .truncate(true) // erase the file
         .open(filename)?;
 
-    file.write(b"id,name,email\n")?;
+    // write() accepts raw bytes
+    file.write(b"id,name,email\n")?; // "b" tells the compiler to use bytes instead of a string
 
+    // into_iter() creates an iterator and moves the values out of the vector
+    // into the loop
     for record in records.into_vec().into_iter() {
         let email = match record.email {
             Some(email) => email,
             None => "".to_string(),
         };
-        let line = format!("{},{},{}\n", record.id, record.name, email);
+        let line = format!("{},{},{}\n", record.id, record.name, email); // {} release mode print
         file.write(line.as_bytes())?;
     }
-    file.flush();
+    file.flush(); // flush makes a request to the system and it won't return until
+                  // system's successfully written the data to the disk or it failed
+                  // without it, the file won't be properly written
     Ok(())
 }
