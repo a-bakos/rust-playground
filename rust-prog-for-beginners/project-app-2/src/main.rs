@@ -66,6 +66,16 @@ impl Records {
         records.sort_by_key(|rec| rec.id);
         records
     }
+
+    fn next_id(&self) -> i64 {
+        let mut ids: Vec<_> = self.inner.keys().collect();
+        ids.sort();
+        match ids.pop() {
+            // pop() takes the last item off
+            Some(id) => id + 1,
+            None => 1,
+        }
+    }
 }
 
 // dedicated error type for parsing
@@ -170,5 +180,25 @@ fn run(opt: Opt) -> Result<(), std::io::Error> {
             }
         }
     }
+    Ok(())
+}
+
+fn save_records(filename: PathBuf, records: Records) -> std::io::Result<()> {
+    let mut file = OpenOptions::new()
+        .write(true)
+        .truncate(true)
+        .open(filename)?;
+
+    file.write(b"id,name,email\n")?;
+
+    for record in records.into_vec().into_iter() {
+        let email = match record.email {
+            Some(email) => email,
+            None => "".to_string(),
+        };
+        let line = format!("{},{},{}\n", record.id, record.name, email);
+        file.write(line.as_bytes())?;
+    }
+    file.flush();
     Ok(())
 }
