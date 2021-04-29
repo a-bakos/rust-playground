@@ -88,6 +88,17 @@ impl Records {
     fn remove(&mut self, id: i64) -> Option<Record> {
         self.inner.remove(&id)
     }
+
+    fn edit(&mut self, id: i64, name: &str, email: Option<String>) {
+        self.inner.insert(
+            id,
+            Record {
+                id,
+                name: name.to_string(),
+                email,
+            },
+        );
+    }
 }
 
 // dedicated error type for parsing
@@ -184,6 +195,12 @@ enum Command {
     Remove {
         id: i64,
     },
+    Edit {
+        id: i64,
+        name: String,
+        #[structopt(short)]
+        email: Option<String>,
+    },
 }
 
 fn main() {
@@ -231,6 +248,11 @@ fn run(opt: Opt) -> Result<(), std::io::Error> {
             } else {
                 println!("Record not found");
             }
+        }
+        Command::Edit { id, name, email } => {
+            let mut recs = load_records(opt.data_file.clone(), opt.verbose)?;
+            recs.edit(id, &name, email);
+            save_records(opt.data_file, recs)?;
         }
     }
     Ok(())
