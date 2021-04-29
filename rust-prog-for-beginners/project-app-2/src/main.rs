@@ -103,6 +103,12 @@ fn parse_record(record: &str) -> Result<Record, ParseError> {
         Some(id) => i64::from_str_radix(id, 10)?,
         None => return Err(ParseError::EmptyRecord),
     };
+    // double asterisk in filter:
+    // - first, the fields vector has our reference to a string
+    // - and get() gives us another reference (so two && ampersands so far)
+    // - finally, when we call filter, the closure parameter "name" will be
+    // referenced again
+    // - so we have to dereference it twice with **
     let name = match fields.get(1).filter(|name| **name != "") {
         Some(name) => name.to_string(),
         None => return Err(ParseError::MissingField("name".to_owned())),
