@@ -80,6 +80,7 @@ fn load_records(filename: PathBuf, verbose: bool) -> std::io::Result<Records> {
 fn parse_records(buffer: String, verbose: bool) -> Records {
     let mut recs = Records::new();
     for (num, record) in recs.split('\n').enumerate() {
+        // .enumerate() gives us a tuple, with iteration number and the current data
         if record != "" {
             match parse_record(record) {
                 Ok(record) => recs.add(record),
@@ -94,8 +95,24 @@ fn parse_records(buffer: String, verbose: bool) -> Records {
     recs
 }
 
-fn parse_record(record) {
+fn parse_record(record: &str) -> Result<Record, ParseError> {
+    let fields: Vec<&str> = record.split(',').collect();
+    let id = match fields.get(0) {
+        // trying to turn the string representation of the id to a number we can work with
+        // id is the string, 10 is base-10 numbers
+        Some(id) => i64::from_str_radix(id, 10)?,
+        None => return Err(ParseError::EmptyRecord),
+    };
+    let name = match fields.get(1).filter(|name| **name != "") {
+        Some(name) => name.to_string(),
+        None => return Err(ParseError::MissingField("name".to_owned())),
+    };
+    let email = fields
+        .get(2)
+        .map(|email| email.to_string())
+        .filter(|email| email != "");
 
+    Ok(Record { id, name, email })
 }
 
 fn main() {
