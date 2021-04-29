@@ -33,6 +33,8 @@ struct Record {
 }
 
 use std::collections::HashMap;
+use std::io::File;
+use std::path::PathBuf;
 use thiserror::Error;
 
 #[derive(Debug)]
@@ -63,6 +65,37 @@ enum ParseError {
 
     #[error("Missing fields: {0}")]
     MissingField(String),
+}
+
+// Handling file
+// std::path::PathBuf
+fn load_records(filename: PathBuf, verbose: bool) -> std::io::Result<Records> {
+    // return early with ? if there's a problem
+    let mut file = File::open(filename)?;
+    let mut buffer = String::new();
+    file.read_to_string(&mut buffer)?;
+    Ok(parse_records(buffer, verbose))
+}
+
+fn parse_records(buffer: String, verbose: bool) -> Records {
+    let mut recs = Records::new();
+    for (num, record) in recs.split('\n').enumerate() {
+        if record != "" {
+            match parse_record(record) {
+                Ok(record) => recs.add(record),
+                Err(e) => {
+                    if verbose {
+                        println!("Error on line {}: {}\n > \"{}\"\n", num + 1, e, record);
+                    }
+                }
+            }
+        }
+    }
+    recs
+}
+
+fn parse_record(record) {
+
 }
 
 fn main() {
