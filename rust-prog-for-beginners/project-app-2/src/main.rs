@@ -76,6 +76,14 @@ impl Records {
             None => 1,
         }
     }
+
+    fn search(&self, name: &str) -> Vec<&Record> {
+        // borrow Record because we're borrowing self
+        self.inner
+            .values()
+            .filter(|rec| rec.name.to_lowercase().contains(&name.to_lowercase())) // for .contains() won't have to be an exact match
+            .collect()
+    }
 }
 
 // dedicated error type for parsing
@@ -166,6 +174,9 @@ enum Command {
         email: Option<String>,
     },
     List {},
+    Search {
+        query: String,
+    },
 }
 
 fn main() {
@@ -192,6 +203,17 @@ fn run(opt: Opt) -> Result<(), std::io::Error> {
             let recs = load_records(opt.data_file, opt.verbose)?;
             for record in recs.into_vec() {
                 println!("{:?}", record);
+            }
+        }
+        Command::Search { query } => {
+            let recs = load_records(opt.data_file, opt.verbose)?;
+            let results = recs.search(&query);
+            if results.is_empty() {
+                println!("No records found.");
+            } else {
+                for rec in results {
+                    println!("{:?}", rec);
+                }
             }
         }
     }
