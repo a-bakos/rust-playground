@@ -13,6 +13,7 @@ CMD | DESC
 `cargo test --doc` | Further documentation for testing
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
+`cargo new --lib my-lib` | Naw library file/project
 `cargo update` | Update a crate (ignore lock)
 `cargo doc --open` | Generate local documentation (use /// to comment)
 `cargo clippy` | See idiomatic code suggestions
