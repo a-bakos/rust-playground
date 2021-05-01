@@ -17,6 +17,7 @@ CMD | DESC
 `cargo update` | Update a crate (ignore lock)
 `cargo doc --open` | Generate local documentation (use /// to comment)
 `cargo clippy` | See idiomatic code suggestions
+`cargo search crate-name` | Search for a crate on crates.io, eg. structopt
 `rustup doc` | Open documentation
 
 **Rust online playground** - https://play.rust-lang.org/
