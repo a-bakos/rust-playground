@@ -1,4 +1,5 @@
-use chrono::{DateTime, Utc};
+use chrono::{serde::ts_seconds, DateTime, Local, Utc};
+use serde::{Deserialize, Serialize};
 
 // chrono is a good crate to use if you need to handle date and time data in
 // Rust. It provides an easy API for representing a moment in time.
@@ -8,9 +9,11 @@ use chrono::{DateTime, Utc};
 // No status or is_complete field because we'll represent the to-do list as a
 // vector of tasks (Vec<Task>). So when a task is complete, we can simply
 // remove it from the vector.
-#[derive(Debug)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct Task {
     pub text: String,
+
+    #[serde(with = "ts_seconds")]
     pub created_at: DateTime<Utc>,
 }
 
