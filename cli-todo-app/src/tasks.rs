@@ -1,7 +1,7 @@
 use chrono::{serde::ts_seconds, DateTime, Local, Utc};
 use serde::{Deserialize, Serialize};
 use std::fmt;
-use std::fs::OpenOptions;
+use std::fs::{File, OpenOptions};
 use std::io::{BufReader, Error, ErrorKind, Result, Seek, SeekFrom};
 use std::path::PathBuf;
 
@@ -130,7 +130,7 @@ pub fn list_tasks(journal_path: PathBuf) -> Result<()> {
     } else {
         let mut order: u32 = 1;
         for task in tasks {
-            println!("{}: {}", order, tasks);
+            println!("{}: {}", order, task);
             order += 1;
         }
     }
