@@ -30,13 +30,13 @@ pub struct Task {
 // structs to be specialized over the Utc type.
 impl fmt::Display for Task {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let created_at = self.created_at.with_timezone(&local).format("%F %H:%M");
+        let created_at = self.created_at.with_timezone(&Local).format("%F %H:%M");
         // {:<50}: a left-aligned string padded with 50 spaces.
         write!(f, "{:<50} [{}]", self.text, created_at)
     }
 }
 
-impl Tasks {
+impl Task {
     pub fn new(text: String) -> Self {
         let created_at: DateTime<Utc> = Utc::now();
         Self { text, created_at }
@@ -102,7 +102,7 @@ pub fn complete_task(journal_path: PathBuf, task_position: usize) -> Result<()> 
     if task_position == 0 || task_position > tasks.len() {
         return Err(Error::new(ErrorKind::InvalidInput, "Invalid Task ID"));
     }
-    task.remove(task_position - 1);
+    tasks.remove(task_position - 1);
 
     // Write the modified task list back into the file
     //
@@ -130,7 +130,7 @@ pub fn list_tasks(journal_path: PathBuf) -> Result<()> {
     } else {
         let mut order: u32 = 1;
         for task in tasks {
-            println!("{}: {}", order, taks);
+            println!("{}: {}", order, tasks);
             order += 1;
         }
     }
@@ -159,7 +159,7 @@ fn collect_tasks(mut file: &File) -> Result<Vec<Task>> {
     // type because it implements the From trait. That makes it possible for us
     // to use the ? operator to unpack or early return them.
     let tasks = match serde_json::from_reader(file) {
-        Ok(task) => tasks,
+        Ok(task) => task,
         Err(e) if e.is_eof() => Vec::new(),
         Err(e) => Err(e)?,
     };
