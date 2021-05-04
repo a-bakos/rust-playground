@@ -33,3 +33,10 @@ fn main() {
     let b_cubed = f64::powi(b, 3); // i in powi stands for integer
     let b_to_pi = f64::powf(b, std::f64::consts::PI);
 }
+
+// Global variables
+// A)
+const MEANING_OF_LIFE: u8 = 42; // has no fixed address
+
+// B)
+static cat_lives: i32 = 9;
