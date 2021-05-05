@@ -32,6 +32,28 @@ fn main() {
     let b = 2.5;
     let b_cubed = f64::powi(b, 3); // i in powi stands for integer
     let b_to_pi = f64::powf(b, std::f64::consts::PI);
+
+    // Matching enums
+    let color: Colors = Colors::CMYK {
+        cyan: 0,
+        magenta: 128,
+        yellow: 0,
+        black: 0,
+    };
+    match color {
+        Colors::Red => println!("Red"),
+        Colors::Green => println!("Green"),
+        Colors::Blue => println!("Blue"),
+        Colors::RGB(0, 0, 0) => println!("Black"),
+        Colors::RGB(r, g, b) => println!("Any rgb"),
+        Colors::CMYK {
+            cyan: _,
+            magenta: 128,
+            yellow: _,
+            black: _,
+        } => println!("Only care about a certain amount of magenta in CMYK"),
+        _ => println!("Anything else"),
+    }
 }
 
 // Global variables
@@ -39,4 +61,17 @@ fn main() {
 const MEANING_OF_LIFE: u8 = 42; // has no fixed address
 
 // B)
-static cat_lives: i32 = 9;
+static CAT_LIVES: i32 = 9;
+
+enum Colors {
+    Red,
+    Green,
+    Blue,
+    RGB(u8, u8, u8),
+    CMYK {
+        cyan: u8,
+        magenta: u8,
+        yellow: u8,
+        black: u8,
+    },
+}
