@@ -21,12 +21,15 @@ fn pattern_matching() {
 }
 
 fn tuple_matching() {
-    let tups = (0, 3);
+    let mut tups = (0, 3);
 
     match tups {
         (0, 0) => println!("origin"),
         (0, 3) => println!("the point"),
-        (0, y) => println!("y = {}", y),
+        // the variable can be a reference,
+        // and it also can be mutable (if declaration
+        // is mutable too)
+        (0, ref mut y) => println!("y = {}", y),
         (x, y) => println!("anything else"),
     }
 }
