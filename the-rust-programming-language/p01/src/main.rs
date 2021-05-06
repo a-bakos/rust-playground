@@ -52,6 +52,11 @@ fn main() {
             yellow: _,
             black: _,
         } => println!("Only care about a certain amount of magenta in CMYK"),
+        // the above condition could also be written as:
+        // where .. ignores the rest of the variables
+        Colors::CMYK { magenta: 128, .. } => {
+            println!("Only care about a certain amount of magenta in CMYK")
+        }
         _ => println!("Anything else"),
     }
 }

@@ -14,12 +14,24 @@ fn how_many(x: i32) -> &'static str {
     }
 }
 
-fn patter_matching() {
+fn pattern_matching() {
     for x in 0..13 {
         println!("{}: I have {} oranges", x, how_many(x));
     }
 }
 
+fn tuple_matching() {
+    let tups = (0, 3);
+
+    match tups {
+        (0, 0) => println!("origin"),
+        (0, 3) => println!("the point"),
+        (0, y) => println!("y = {}", y),
+        (x, y) => println!("anything else"),
+    }
+}
+
 fn main() {
-    patter_matching();
+    pattern_matching();
+    tuple_matching();
 }
