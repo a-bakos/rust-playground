@@ -77,6 +77,40 @@ fn main() {
     if removed {
         println!("delta removed");
     }
+
+    // Set operations
+    let set_1_5: HashSet<_> = (1..=5).collect(); // use _ for type inference
+    let set_6_10: HashSet<_> = (6..=10).collect();
+    let set_1_10: HashSet<_> = (1..=10).collect();
+    let set_2_8: HashSet<_> = (2..=8).collect();
+
+    // subset - every single element of a set is part of another set
+    println!(
+        "Is {:?} a subset of {:?}? {}",
+        set_2_8,
+        set_1_10,
+        set_2_8.is_subset(&set_1_10)
+    );
+
+    // disjoint - no common elements, all sets are independent
+    println!(
+        "Is {:?} a disjoint of {:?}? {}",
+        set_1_5,
+        set_6_10,
+        set_1_5.is_disjoint(&set_6_10)
+    );
+
+    // union - both of the sets
+    // intersection - elements that are present in both sets
+    println!(
+        "items in {:?} and {:?}: {:?}",
+        set_2_8,
+        set_6_10,
+        set_2_8.union(&set_6_10)
+    );
+
+    // difference = items in the first set but not in second
+    // symmetric difference = items in the union but not in the intersection (union minus intersection)
 }
 
 use std::collections::HashMap;
