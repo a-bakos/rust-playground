@@ -14,9 +14,20 @@ fn main() {
     }
 
     mynums.push(100);
+
+    println!("{:?}", mynums);
+
     let last_elem = mynums.pop(); // Get last elem, remove it from Vec, and store it in last_elem as an Option
     match last_elem {
         Some(elem) => println!("This was the last element {:?}", elem),
         None => println!("This was an empty vector..."),
     }
+
+    println!("{:?}", mynums);
+
+    if let Some(x) = mynums.pop() {
+        println!("{:?}", x);
+    }
+
+    println!("{:?}", mynums);
 }
