@@ -50,6 +50,29 @@ fn main() {
     // If not, create one with the value 1,
     // otherwise, don't do anything.
     shapes.entry("circle".to_string()).or_insert(1);
+
+    ////////////////////////
+    // HashSet
+    // represents a mathematical set,
+    // only unique elements,
+    // no order guarantee
+
+    let mut greeks = HashSet::new();
+    greeks.insert("alpa");
+    greeks.insert("gamma");
+    greeks.insert("delta");
+
+    println!("{:?}", greeks);
+
+    let added_vega = greeks.insert("vega");
+    if added_vega {
+        println!("Added vega");
+    }
+
+    if !greeks.contains("kappa") {
+        println!("we dont have kappa");
+    }
 }
 
 use std::collections::HashMap;
+use std::collections::HashSet;
