@@ -33,4 +33,23 @@ fn main() {
     }
 
     println!("{:?}", mynums);
+
+    /////////////////////////
+    /// HashMap
+    let mut shapes = HashMap::new();
+    shapes.insert(String::from("triangle"), 3);
+    shapes.insert(String::from("square"), 4);
+
+    println!("A triangle has {} sides", shapes["triangle"]);
+
+    for (key, value) in &shapes {
+        println!("{} : {}", key, value);
+    }
+
+    // Do we have a circle entry?
+    // If not, create one with the value 1,
+    // otherwise, don't do anything.
+    shapes.entry("circle".to_string()).or_insert(1);
 }
+
+use std::collections::HashMap;
