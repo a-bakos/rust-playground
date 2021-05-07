@@ -72,6 +72,11 @@ fn main() {
     if !greeks.contains("kappa") {
         println!("we dont have kappa");
     }
+
+    let removed = greeks.remove("delta");
+    if removed {
+        println!("delta removed");
+    }
 }
 
 use std::collections::HashMap;
