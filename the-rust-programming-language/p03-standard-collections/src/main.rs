@@ -51,6 +51,14 @@ fn main() {
     // otherwise, don't do anything.
     shapes.entry("circle".to_string()).or_insert(1);
 
+    // into_iter() or adaptor methods:
+    // when you no longer care about the collection
+    // you are moving the date out of
+    let mut vec1 = vec![1, 2, 3];
+    let mut vec2 = vec![4, 5, 6];
+    vec1.extend(vec2); // into_iter() move, vec2 is destroyed
+    println!("{:?}", vec1);
+
     ////////////////////////
     // HashSet
     // represents a mathematical set,
