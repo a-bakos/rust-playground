@@ -25,6 +25,9 @@ fn main() {
 
     println!("{:?}", mynums);
 
+    // Read this like:
+    // If mynums.pop() yields a value (x) of Some,
+    // get the value and print it.
     if let Some(x) = mynums.pop() {
         println!("{:?}", x);
     }
