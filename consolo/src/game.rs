@@ -1,4 +1,6 @@
 use crate::player::Player;
+use crate::Card;
+use crate::Color;
 use crate::Deck;
 
 #[derive(Debug)]
@@ -16,6 +18,17 @@ impl Game {
             steps: 0,
             players,
             deck: Deck::new(),
+        }
+    }
+
+    pub fn deal_cards(&mut self) {
+        for mut player in self.players.iter_mut() {
+            player.cards = vec![Card {
+                value: 10,
+                color: Color::Red,
+            }];
+
+            self.deck.total_cards -= 1;
         }
     }
 }

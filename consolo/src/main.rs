@@ -26,24 +26,32 @@ fn main() {
     // Initiate gameplay, pass in the players
     let mut gameplay = Game::new(players);
     println!("The following players have joined the game:");
-    for player in gameplay.players {
-        println!("{}", player.name);
+    for player in &gameplay.players {
+        println!("\t- {}", player.name);
     }
 
-    //let play1_cards = player1.number_of_cards();
-    //println!("{} has {} cards:", player1.name, play1_cards);
-    //for card in player1.cards.iter() {
-    //    let color = match card.color {
-    //        Color::Red => "R",
-    //        Color::Yellow => "Y",
-    //        Color::Blue => "B",
-    //        Color::Green => "G",
-    //        Color::Black => "A",
-    //    };
-    //    print!("[{}{}] ", color, card.value);
-    //}
+    println!("\nThe deck has {} cards", gameplay.deck.total_cards);
+    gameplay.deal_cards();
 
-    //deck.total_cards -= player1.number_of_cards() as u8;
+    for player in &gameplay.players {
+        println!(
+            "\n{} has {} card(s):",
+            player.name,
+            player.number_of_cards()
+        );
 
-    //println!("\n{:?}", deck.total_cards);
+        for card in player.cards.iter() {
+            let color = match card.color {
+                Color::Red => "R",
+                Color::Yellow => "Y",
+                Color::Blue => "B",
+                Color::Green => "G",
+                Color::Black => "A",
+            };
+            print!("[{}{}] ", color, card.value);
+        }
+        println!("");
+    }
+
+    println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
 }
