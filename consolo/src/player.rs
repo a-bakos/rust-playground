@@ -16,4 +16,8 @@ impl Player {
             cards: vec![],
         }
     }
+
+    pub fn discard(&mut self) {
+        self.cards.pop();
+    }
 }

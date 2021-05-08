@@ -1,3 +1,4 @@
+use crate::discard::Discard;
 use crate::player::Player;
 use crate::Card;
 use crate::Color;
@@ -10,6 +11,7 @@ pub struct Game {
     pub steps: u8,
     pub players: Vec<Player>,
     pub deck: Deck,
+    pub discard: Discard,
 }
 
 impl Game {
@@ -19,6 +21,7 @@ impl Game {
             steps: 0,
             players,
             deck: Deck::new(),
+            discard: Discard::new(),
         }
     }
 

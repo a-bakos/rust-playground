@@ -55,4 +55,11 @@ fn main() {
     }
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
+
+    gameplay.players[0].discard();
+    println!(
+        "\n{} has {} card(s):",
+        gameplay.players[0].name,
+        gameplay.players[0].number_of_cards()
+    );
 }
