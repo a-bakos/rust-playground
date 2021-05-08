@@ -41,15 +41,11 @@ fn main() {
             player.number_of_cards()
         );
 
+        let mut card_counter: u8 = 0;
         for card in player.cards.iter() {
-            let color = match card.color {
-                Color::Red => "R",
-                Color::Yellow => "Y",
-                Color::Blue => "B",
-                Color::Green => "G",
-                Color::Black => "A",
-            };
-            print!("[{}{}] ", color, card.value);
+            card_counter += 1;
+            print!("{}. ", card_counter);
+            show_card_face(&card);
         }
         println!("");
     }
@@ -62,4 +58,15 @@ fn main() {
         gameplay.players[0].name,
         gameplay.players[0].number_of_cards()
     );
+}
+
+pub fn show_card_face(card: &Card) {
+    let color = match card.color {
+        Color::Red => "R",
+        Color::Yellow => "Y",
+        Color::Blue => "B",
+        Color::Green => "G",
+        Color::Black => "A",
+    };
+    print!("[{}{}] ", color, card.value);
 }
