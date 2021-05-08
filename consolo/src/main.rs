@@ -1,39 +1,95 @@
+const TOTAL_CARDS: u8 = 112;
+#[derive(Debug)]
+struct Counter {
+    steps: u8,
+}
+
 #[derive(Debug)]
 enum Color {
-    Yellow,
     Red,
-    Blue,
     Green,
+    Blue,
+    Yellow,
     Black,
 }
 
-// struct lives on the stack, except for the color property (heao)
 #[derive(Debug)]
 struct Card {
-    color: Color,
     value: u8,
-    action: bool,
+    color: Color,
 }
-impl Card {
-    fn get_color(&self) {
-        let color = match self.color {
-            Color::Yellow => "Yellow",
-            Color::Red => "Red",
-            Color::Blue => "Blue",
-            Color::Green => "Green",
-            Color::Black => "Black",
-        };
 
-        println!("Color is {}", color);
+#[derive(Debug)]
+struct Player {
+    name: String,
+    cards: Vec<Card>,
+}
+impl Player {
+    fn number_of_cards(&self) -> usize {
+        self.cards.len()
+    }
+
+    fn new(name: String) -> Self {
+        Self {
+            name,
+            cards: Deck::deal(),
+        }
+    }
+}
+
+#[derive(Debug)]
+struct Deck {
+    total_cards: u8,
+}
+impl Deck {
+    fn deal() -> Vec<Card> {
+        vec![Card {
+            value: 10,
+            color: Color::Red,
+        }]
     }
 }
 
 fn main() {
-    let single_card = Card {
-        color: Color::Yellow,
-        value: 8,
-        action: false,
+    let mut deck = Deck {
+        total_cards: TOTAL_CARDS,
     };
-    println!("Hello card: {:?}", single_card);
-    single_card.get_color();
+
+    let player1 = Player {
+        name: "Frank".to_string(),
+        cards: vec![
+            Card {
+                value: 5,
+                color: Color::Red,
+            },
+            Card {
+                value: 2,
+                color: Color::Green,
+            },
+            Card {
+                value: 3,
+                color: Color::Yellow,
+            },
+        ],
+    };
+
+    let play1_cards = player1.number_of_cards();
+    println!("{} has {} cards:", player1.name, play1_cards);
+    for card in player1.cards.iter() {
+        let color = match card.color {
+            Color::Red => "R",
+            Color::Yellow => "Y",
+            Color::Blue => "B",
+            Color::Green => "G",
+            Color::Black => "A",
+        };
+        print!("[{}{}] ", color, card.value);
+    }
+
+    deck.total_cards -= player1.number_of_cards() as u8;
+
+    println!("\n{:?}", deck.total_cards);
+
+    let player2 = Player::new("Thomas".to_string());
+    println!("{:?}", player2.number_of_cards());
 }
