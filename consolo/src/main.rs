@@ -10,6 +10,7 @@ use crate::game::Game;
 use crate::player::Player;
 
 const TOTAL_CARDS: u8 = 112;
+const START_CARDS: u8 = 8;
 
 fn main() {
     println!("\n..::| C O N S O L O |::..\n");

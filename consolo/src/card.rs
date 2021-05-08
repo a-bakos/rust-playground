@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub enum Color {
     Red,
     Green,
@@ -7,7 +7,7 @@ pub enum Color {
     Black,
 }
 
-#[derive(Debug)]
+#[derive(Copy, Clone, Debug)]
 pub struct Card {
     pub value: u8,
     pub color: Color,
