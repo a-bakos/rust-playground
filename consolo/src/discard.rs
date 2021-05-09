@@ -1,9 +1,11 @@
+use crate::gui::GUI;
+use crate::helpers::show_card_face;
 use crate::Card;
 
 #[derive(Debug)]
 pub struct Discard {
-    total_cards: u8,
-    cards: Vec<Card>,
+    pub total_cards: u8,
+    pub cards: Vec<Card>,
 }
 
 impl Discard {
@@ -14,7 +16,18 @@ impl Discard {
         }
     }
 
-    pub fn get_top_card(&self) {
-        println!("Top card");
+    /// Get the top card struct option from the discard pile
+    pub fn get_top_card(&self) -> Option<&Card> {
+        self.cards.last()
+    }
+
+    /// Show top card value if there's a card
+    pub fn show_top_card(&self, top_card: Option<&Card>) {
+        match top_card {
+            Some(card) => {
+                show_card_face(&card);
+            }
+            None => GUI::gui_msg(GUI::DiscardEmpty),
+        }
     }
 }

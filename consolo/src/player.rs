@@ -1,3 +1,4 @@
+use crate::discard::Discard;
 use crate::Card;
 
 #[derive(Debug)]
@@ -20,7 +21,12 @@ impl Player {
     }
 
     /// Remove/Discard a card from the player's hand by card position
-    pub fn discard(&mut self, card_position: usize) {
-        self.cards.remove(card_position);
+    pub fn discard(&mut self, card_position: usize, discard_pile: &mut Discard) {
+        let to_discard: Card = self.cards.remove(card_position);
+
+        println!("{:?}", to_discard);
+
+        discard_pile.cards.push(to_discard);
+        discard_pile.total_cards += 1;
     }
 }

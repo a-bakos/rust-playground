@@ -2,6 +2,7 @@ mod card;
 mod deck;
 mod discard;
 mod game;
+mod gui;
 mod helpers;
 mod player;
 
@@ -47,11 +48,21 @@ fn main() {
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
 
-    gameplay.players[0].discard(0);
+    println!("the top card on the discard pile is:");
+    gameplay
+        .discard
+        .show_top_card(gameplay.discard.get_top_card());
+
+    gameplay.players[0].discard(0, &mut gameplay.discard);
     println!(
         "\n{} has {} card(s):",
         gameplay.players[0].name,
         gameplay.players[0].number_of_cards()
     );
-    helpers::list_cards(&gameplay.players[0]);
+    //helpers::list_cards(&gameplay.players[0]);
+
+    println!("the top card on the discard pile is:");
+    gameplay
+        .discard
+        .show_top_card(gameplay.discard.get_top_card());
 }
