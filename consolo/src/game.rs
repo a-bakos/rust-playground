@@ -41,9 +41,7 @@ impl Game {
         }
     }
 
-    // WIP
     pub fn empty_cards(player_cards: &mut Vec<Card>) -> Vec<Card> {
-        // , player2_cards: &'b mut Vec<Card>
         let mut temp_cards: Vec<Card> = Vec::new();
         for card in player_cards.iter_mut() {
             temp_cards.push(*card);
@@ -51,6 +49,7 @@ impl Game {
         player_cards.clear();
         temp_cards
     }
+
     pub fn swap_cards(player_new_cards: Vec<Card>, for_player: &mut Player) {
         for card in player_new_cards.iter() {
             for_player.cards.push(*card);
