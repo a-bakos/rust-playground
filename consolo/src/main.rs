@@ -41,13 +41,7 @@ fn main() {
             player.number_of_cards()
         );
 
-        let mut card_counter: u8 = 0;
-        for card in player.cards.iter() {
-            card_counter += 1;
-            print!("{}. ", card_counter);
-            show_card_face(&card);
-        }
-        println!("");
+        list_cards(&player);
     }
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
@@ -58,15 +52,7 @@ fn main() {
         gameplay.players[0].name,
         gameplay.players[0].number_of_cards()
     );
-
-    // FN todo
-    let mut card_counter: u8 = 0;
-    for card in gameplay.players[0].cards.iter() {
-        card_counter += 1;
-        print!("{}. ", card_counter);
-        show_card_face(&card);
-    }
-    println!("");
+    list_cards(&gameplay.players[0]);
 }
 
 pub fn show_card_face(card: &Card) {
@@ -78,4 +64,14 @@ pub fn show_card_face(card: &Card) {
         Color::Black => "A",
     };
     print!("[{}{}] ", color, card.value);
+}
+
+pub fn list_cards(player: &Player) {
+    let mut card_counter: u8 = 0;
+    for card in player.cards.iter() {
+        card_counter += 1;
+        print!("{}. ", card_counter);
+        show_card_face(&card);
+    }
+    println!("");
 }
