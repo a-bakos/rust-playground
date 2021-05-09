@@ -52,12 +52,21 @@ fn main() {
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
 
-    gameplay.players[0].discard();
+    gameplay.players[0].discard(0);
     println!(
         "\n{} has {} card(s):",
         gameplay.players[0].name,
         gameplay.players[0].number_of_cards()
     );
+
+    // FN todo
+    let mut card_counter: u8 = 0;
+    for card in gameplay.players[0].cards.iter() {
+        card_counter += 1;
+        print!("{}. ", card_counter);
+        show_card_face(&card);
+    }
+    println!("");
 }
 
 pub fn show_card_face(card: &Card) {

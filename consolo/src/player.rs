@@ -4,6 +4,7 @@ use crate::Card;
 pub struct Player {
     pub name: String,
     pub cards: Vec<Card>,
+    pub points: u8,
 }
 impl Player {
     pub fn number_of_cards(&self) -> usize {
@@ -14,10 +15,12 @@ impl Player {
         Self {
             name,
             cards: vec![],
+            points: 0,
         }
     }
 
-    pub fn discard(&mut self) {
-        self.cards.pop();
+    /// Remove/Discard a card from the player's hand by card position
+    pub fn discard(&mut self, card_position: usize) {
+        self.cards.remove(card_position);
     }
 }

@@ -29,7 +29,7 @@ impl Game {
     pub fn deal_cards(&mut self) {
         for mut player in self.players.iter_mut() {
             let mut i = 0;
-            while i <= START_CARDS {
+            while i <= START_CARDS - 1 {
                 let card = Card {
                     value: rand::thread_rng().gen_range(1..10),
                     color: Color::Red,
