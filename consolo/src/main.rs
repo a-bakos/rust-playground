@@ -57,15 +57,24 @@ fn main() {
         .show_top_card(gameplay.discard.get_top_card());
 
     gameplay.players[0].discard(0, &mut gameplay.discard);
-    println!(
-        "\n{} has {} card(s):",
-        gameplay.players[0].name,
-        gameplay.players[0].number_of_cards()
-    );
-    //helpers::list_cards(&gameplay.players[0]);
-
     GUI::gui_msg(GUI::DiscardTopCardIs);
     gameplay
         .discard
         .show_top_card(gameplay.discard.get_top_card());
+
+    println!("How many cards:");
+
+    helpers::list_cards(&gameplay.players[0]);
+    helpers::list_cards(&gameplay.players[1]);
+
+    // WIP
+    let player1_cards: Vec<Card> = Game::empty_cards(&mut gameplay.players[0].cards);
+    let player2_cards: Vec<Card> = Game::empty_cards(&mut gameplay.players[1].cards);
+
+    Game::swap_cards(player1_cards, &mut gameplay.players[1]);
+    Game::swap_cards(player2_cards, &mut gameplay.players[0]);
+
+    println!("Swapped");
+    helpers::list_cards(&gameplay.players[0]);
+    helpers::list_cards(&gameplay.players[1]);
 }
