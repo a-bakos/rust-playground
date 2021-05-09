@@ -69,4 +69,24 @@ fn main() {
 
     let cat3: Cat = Animal::new("Doge");
     cat3.talk();
+
+    // Method 4 -- Add own trait to an existing type
+    // This way I get a sum() function for my Vec<i32>!
+
+    let sum_this = vec![1, 2, 3];
+    println!("Sum is {}", sum_this.sum());
+}
+
+trait Summable<T> {
+    fn sum(&self) -> T;
+}
+
+impl Summable<i32> for Vec<i32> {
+    fn sum(&self) -> i32 {
+        let mut result: i32 = 0;
+        for n in self {
+            result += *n;
+        }
+        return result;
+    }
 }
