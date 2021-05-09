@@ -2,6 +2,7 @@ mod card;
 mod deck;
 mod discard;
 mod game;
+mod helpers;
 mod player;
 
 use crate::card::{Card, Color};
@@ -41,7 +42,7 @@ fn main() {
             player.number_of_cards()
         );
 
-        list_cards(&player);
+        helpers::list_cards(&player);
     }
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
@@ -52,26 +53,5 @@ fn main() {
         gameplay.players[0].name,
         gameplay.players[0].number_of_cards()
     );
-    list_cards(&gameplay.players[0]);
-}
-
-pub fn show_card_face(card: &Card) {
-    let color = match card.color {
-        Color::Red => "R",
-        Color::Yellow => "Y",
-        Color::Blue => "B",
-        Color::Green => "G",
-        Color::Black => "A",
-    };
-    print!("[{}{}] ", color, card.value);
-}
-
-pub fn list_cards(player: &Player) {
-    let mut card_counter: u8 = 0;
-    for card in player.cards.iter() {
-        card_counter += 1;
-        print!("{}. ", card_counter);
-        show_card_face(&card);
-    }
-    println!("");
+    helpers::list_cards(&gameplay.players[0]);
 }
