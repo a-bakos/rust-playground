@@ -4,6 +4,7 @@ use crate::Card;
 use crate::Color;
 use crate::Deck;
 use crate::START_CARDS;
+use rand::prelude::*;
 
 #[derive(Debug)]
 pub struct Game {
@@ -27,15 +28,16 @@ impl Game {
 
     pub fn deal_cards(&mut self) {
         for mut player in self.players.iter_mut() {
-            player.cards = vec![
-                Card {
-                    value: 10,
+            let mut i = 0;
+            while i <= START_CARDS {
+                let card = Card {
+                    value: rand::thread_rng().gen_range(1..10),
                     color: Color::Red,
                 };
-                START_CARDS as usize
-            ];
-
-            self.deck.total_cards -= START_CARDS;
+                player.cards.push(card);
+                self.deck.total_cards -= 1;
+                i += 1;
+            }
         }
     }
 }
