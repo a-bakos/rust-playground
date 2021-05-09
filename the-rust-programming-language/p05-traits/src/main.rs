@@ -1,4 +1,6 @@
 trait Animal {
+    fn new(name: &'static str) -> Self;
+
     fn name(&self) -> &'static str;
 
     fn talk(&self) {
@@ -11,6 +13,10 @@ struct Human {
 }
 
 impl Animal for Human {
+    fn new(name: &'static str) -> Self {
+        Self { name }
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }
@@ -25,6 +31,10 @@ struct Cat {
 }
 
 impl Animal for Cat {
+    fn new(name: &'static str) -> Self {
+        Self { name }
+    }
+
     fn name(&self) -> &'static str {
         self.name
     }
@@ -38,6 +48,12 @@ fn main() {
     let human = Human { name: "Frank" };
     human.talk();
 
-    let cat = Human { name: "Felix" };
+    let cat = Cat { name: "Felix" };
     cat.talk();
+
+    let human2 = Human::new("Grace");
+    human2.talk();
+
+    let cat2 = Cat::new("Molly");
+    cat2.talk();
 }
