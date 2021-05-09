@@ -9,13 +9,14 @@ mod player;
 use crate::card::{Card, Color};
 use crate::deck::Deck;
 use crate::game::Game;
+use crate::gui::GUI;
 use crate::player::Player;
 
 const TOTAL_CARDS: u8 = 112;
 const START_CARDS: u8 = 8;
 
 fn main() {
-    println!("\n..::| C O N S O L O |::..\n");
+    GUI::gui_msg(GUI::GameTitle);
 
     // Define the players
     let player1 = Player::new("Frank".to_string());
@@ -28,7 +29,9 @@ fn main() {
 
     // Initiate gameplay, pass in the players
     let mut gameplay = Game::new(players);
-    println!("The following players have joined the game:");
+
+    GUI::gui_msg(GUI::PlayersJoined);
+
     for player in &gameplay.players {
         println!("\t- {}", player.name);
     }
@@ -48,7 +51,7 @@ fn main() {
 
     println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
 
-    println!("the top card on the discard pile is:");
+    GUI::gui_msg(GUI::DiscardTopCardIs);
     gameplay
         .discard
         .show_top_card(gameplay.discard.get_top_card());
@@ -61,7 +64,7 @@ fn main() {
     );
     //helpers::list_cards(&gameplay.players[0]);
 
-    println!("the top card on the discard pile is:");
+    GUI::gui_msg(GUI::DiscardTopCardIs);
     gameplay
         .discard
         .show_top_card(gameplay.discard.get_top_card());
