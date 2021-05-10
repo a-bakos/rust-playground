@@ -103,6 +103,9 @@ fn main() {
     // "Drop" trait
     let monster = Monster::new("Zorg");
     println!("Something happening here...");
+
+    // Calling "drop" explicitly
+    // drop(monster);
 }
 
 trait Summable<T> {
