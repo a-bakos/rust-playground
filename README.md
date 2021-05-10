@@ -18,6 +18,7 @@ CMD | DESC
 `cargo doc --open` | Generate local documentation (use /// to comment)
 `cargo tree` | Show dependency graph
 `cargo clippy` | See idiomatic code suggestions
+`cargo fmt` | Automatic code formatter 
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt
 `rustup doc` | Open documentation
 
