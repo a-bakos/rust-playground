@@ -66,7 +66,6 @@ fn main() {
     helpers::list_cards(&gameplay.players[0]);
     helpers::list_cards(&gameplay.players[1]);
 
-    // WIP
     let player1_cards: Vec<Card> = Game::empty_cards(&mut gameplay.players[0].cards);
     let player2_cards: Vec<Card> = Game::empty_cards(&mut gameplay.players[1].cards);
 
