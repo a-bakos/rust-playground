@@ -54,6 +54,12 @@ fn creature(animal: impl Animal + Debug) {}
 // Syntax B) - Trait bound syntax. This is beneficial if you have multiple parameters
 // that implement the same traits:
 fn creature2<T: Animal + Debug>(animal: T, animal2: T) {}
+// Syntax C) -
+fn creature3<T>(animal: T)
+where
+    T: Animal + Debug,
+{
+}
 
 fn main() {
     // Method 1
