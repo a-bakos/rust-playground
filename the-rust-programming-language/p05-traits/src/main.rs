@@ -98,6 +98,11 @@ fn main() {
     let grace: &str = "Grace";
     let person = Person::new(grace);
     println!("{:?}", person);
+
+    //-----------------
+    // "Drop" trait
+    let monster = Monster::new("Zorg");
+    println!("Something happening here...");
 }
 
 trait Summable<T> {
@@ -122,5 +127,21 @@ struct Person {
 impl Person {
     fn new<S: Into<String>>(name: S) -> Person {
         Person { name: name.into() }
+    }
+}
+
+// "Drop" trait -- is functionally equivalent with a destructor in other languages
+struct Monster {
+    name: String,
+}
+impl Monster {
+    fn new(name: &str) -> Monster {
+        println!("{} monster enters the game", name);
+        Monster { name: name.into() }
+    }
+}
+impl Drop for Monster {
+    fn drop(&mut self) {
+        println!("{} monster is dead", self.name);
     }
 }
