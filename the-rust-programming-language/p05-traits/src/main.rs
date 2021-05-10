@@ -92,6 +92,12 @@ fn main() {
 
     let sum_this = vec![1, 2, 3];
     println!("Sum is {}", sum_this.sum());
+
+    // ----------------
+    // "Into" trait
+    let grace: &str = "Grace";
+    let person = Person::new(grace);
+    println!("{:?}", person);
 }
 
 trait Summable<T> {
@@ -105,5 +111,16 @@ impl Summable<i32> for Vec<i32> {
             result += *n;
         }
         result
+    }
+}
+
+// "Into" trait
+#[derive(Debug)]
+struct Person {
+    name: String,
+}
+impl Person {
+    fn new<S: Into<String>>(name: S) -> Person {
+        Person { name: name.into() }
     }
 }
