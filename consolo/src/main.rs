@@ -36,7 +36,7 @@ fn main() {
         println!("\t- {}", player.name);
     }
 
-    println!("\nThe deck has {} cards", gameplay.deck.total_cards);
+    GUI::gui_msg(GUI::DeckCardAvailable(gameplay.deck.total_cards));
     gameplay.deal_cards();
 
     for player in &gameplay.players {
@@ -49,8 +49,7 @@ fn main() {
         helpers::list_cards(&player);
     }
 
-    println!("\nDeck has {:?} cards", gameplay.deck.total_cards);
-
+    GUI::gui_msg(GUI::DeckCardAvailable(gameplay.deck.total_cards));
     GUI::gui_msg(GUI::DiscardTopCardIs);
     gameplay
         .discard
@@ -74,7 +73,11 @@ fn main() {
     Game::swap_cards(player1_cards, &mut gameplay.players[1]);
     Game::swap_cards(player2_cards, &mut gameplay.players[0]);
 
-    println!("Swapped");
+    GUI::gui_msg(GUI::CardsSwappedBetween(
+        gameplay.players[1].name.to_string(),
+        gameplay.players[0].name.to_string(),
+    ));
+
     helpers::list_cards(&gameplay.players[0]);
     helpers::list_cards(&gameplay.players[1]);
 }
