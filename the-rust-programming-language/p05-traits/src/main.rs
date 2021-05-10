@@ -1,3 +1,5 @@
+use core::fmt::Debug;
+
 trait Animal {
     fn new(name: &'static str) -> Self;
 
@@ -8,6 +10,7 @@ trait Animal {
     }
 }
 
+#[derive(Debug)]
 struct Human {
     name: &'static str,
 }
@@ -26,6 +29,7 @@ impl Animal for Human {
     }
 }
 
+#[derive(Debug)]
 struct Cat {
     name: &'static str,
 }
@@ -43,6 +47,13 @@ impl Animal for Cat {
         println!("{} says meow", self.name());
     }
 }
+
+// Trait parameters
+// Syntax A) Takes a parameter that implements the Animal trait AND the Debug trait
+fn creature(animal: impl Animal + Debug) {}
+// Syntax B) - Trait bound syntax. This is beneficial if you have multiple parameters
+// that implement the same traits:
+fn creature2<T: Animal + Debug>(animal: T, animal2: T) {}
 
 fn main() {
     // Method 1
@@ -87,6 +98,6 @@ impl Summable<i32> for Vec<i32> {
         for n in self {
             result += *n;
         }
-        return result;
+        result
     }
 }
