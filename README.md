@@ -16,6 +16,7 @@ CMD | DESC
 `cargo new --lib my-lib` | Naw library file/project
 `cargo update` | Update a crate (ignore lock)
 `cargo doc --open` | Generate local documentation (use /// to comment)
+`cargo tree` | Show dependency graph
 `cargo clippy` | See idiomatic code suggestions
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt
 `rustup doc` | Open documentation
