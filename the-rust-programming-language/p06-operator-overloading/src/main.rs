@@ -1,6 +1,7 @@
 // Operator overloading
 
 use core::ops::AddAssign;
+use core::ops::Neg;
 use std::ops::Add;
 
 #[derive(Debug)]
@@ -47,6 +48,20 @@ where
     }
 }
 
+impl<T> Neg for Complex<T>
+where
+    T: Neg<Output = T>,
+{
+    type Output = Complex<T>;
+
+    fn neg(self) -> Self::Output {
+        Complex {
+            real: -self.real,
+            imaginary: -self.imaginary,
+        }
+    }
+}
+
 fn main() {
     let mut a = Complex::new(1.0, 2.0);
     let mut b = Complex::new(3.0, 4.0);
@@ -57,4 +72,8 @@ fn main() {
     let mut d = Complex::new(3.0, 4.0);
     c += d; // we need a trait for this to work
     println!("{:?}", c);
+
+    // Negation
+    let mut e = Complex::new(1.0, 2.0);
+    println!("{:?}", -e);
 }
