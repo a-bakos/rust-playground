@@ -1,5 +1,6 @@
 // Operator overloading
 
+use core::ops::AddAssign;
 use std::ops::Add;
 
 #[derive(Debug)]
@@ -36,8 +37,24 @@ where
     }
 }
 
+impl<T> AddAssign for Complex<T>
+where
+    T: AddAssign<T>,
+{
+    fn add_assign(&mut self, rhs: Self) {
+        self.real += rhs.real;
+        self.imaginary += rhs.imaginary;
+    }
+}
+
 fn main() {
     let mut a = Complex::new(1.0, 2.0);
     let mut b = Complex::new(3.0, 4.0);
     println!("{:?}", a + b);
+
+    // AddAssign
+    let mut c = Complex::new(1.0, 2.0);
+    let mut d = Complex::new(3.0, 4.0);
+    c += d; // we need a trait for this to work
+    println!("{:?}", c);
 }
