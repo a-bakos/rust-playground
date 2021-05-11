@@ -14,9 +14,15 @@ impl<T> Complex<T> {
     }
 }
 
-impl Add for Complex<i32> {
+// A)
+// impl Add for Complex<i32> {
+// B)
+impl<T> Add for Complex<T>
+where
+    T: Add<Output = T>,
+{
     // Associated type:
-    type Output = Complex<i32>;
+    type Output = Complex<T>;
 
     // Trying to support operations like a + b:
     // param1 self is "a", aka left-hand side. self is a reference
@@ -24,14 +30,14 @@ impl Add for Complex<i32> {
     // Self::Output is the associated type
     fn add(self, rhs: Self) -> Self::Output {
         Complex {
-            real: self.real + rhs.real,
+            real: self.real + rhs.real, // == basically a T + T operation
             imaginary: self.imaginary + rhs.imaginary,
         }
     }
 }
 
 fn main() {
-    let mut a = Complex::new(1, 2);
-    let mut b = Complex::new(3, 4);
+    let mut a = Complex::new(1.0, 2.0);
+    let mut b = Complex::new(3.0, 4.0);
     println!("{:?}", a + b);
 }
