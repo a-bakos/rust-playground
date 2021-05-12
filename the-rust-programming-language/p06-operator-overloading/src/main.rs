@@ -4,7 +4,7 @@ use core::ops::AddAssign;
 use core::ops::Neg;
 use std::ops::Add;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq, Ord, PartialOrd)]
 struct Complex<T> {
     real: T,
     imaginary: T,
@@ -62,6 +62,19 @@ where
     }
 }
 
+// Equality
+// Can also derive equality, see at Struct definition
+/*
+impl<T> PartialEq for Complex<T>
+where
+    T: PartialEq,
+{
+    fn eq(&self, rhs: &Self) -> bool {
+        self.real == rhs.real && self.imaginary == rhs.imaginary
+    }
+}
+*/
+
 fn main() {
     let mut a = Complex::new(1.0, 2.0);
     let mut b = Complex::new(3.0, 4.0);
@@ -76,4 +89,15 @@ fn main() {
     // Negation
     let mut e = Complex::new(1.0, 2.0);
     println!("{:?}", -e);
+
+    // Equality
+    //println!("{:?}", e == e);
 }
+
+// There are two types of equality
+// A) Partial EQ
+// B) Full EQ: X = X
+//
+// NaN = not a number like 0/0
+// NAN == NAN -> false
+// Because of this, x = x is violated
