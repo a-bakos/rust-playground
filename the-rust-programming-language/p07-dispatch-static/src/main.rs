@@ -28,6 +28,9 @@ impl Printable for String {
 // This creates monomorphisation.
 // At compilation it creates concrete implementations of
 // print_it for whatever types you request it.
+// So this means, at compilation the following gets created:
+// print_it(x: String) {}
+// print_it(x: i32) {}
 fn print_it<T: Printable>(x: T) {
     println!("{}", x.format());
 }
