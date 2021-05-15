@@ -16,6 +16,7 @@ impl Shape for Circle {
         self.radius * self.radius * std::f64::consts::PI
     }
 }
+
 impl Shape for Sqaure {
     fn area(&self) -> f64 {
         self.side * self.side
@@ -23,5 +24,14 @@ impl Shape for Sqaure {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let shapes: [&Shape; 4] = [
+        &Circle { radius: 1.0 },
+        &Sqaure { side: 3.0 },
+        &Circle { radius: 2.0 },
+        &Sqaure { side: 4.0 },
+    ];
+
+    for (i, shape) in shapes.iter().enumerate() {
+        println!("Shape #{}, area {}", i, shape.area());
+    }
 }
