@@ -1,4 +1,6 @@
 /// Storing objects of different types in a vector
+/// Method 1: using an enum
+/// Method 2: using Box
 use core::fmt::Debug;
 
 trait Animal {
@@ -39,12 +41,14 @@ impl Animal for Cat {
     }
 }
 
+// Method 1
 enum Creature {
     Human(Human),
     Cat(Cat),
 }
 
 fn main() {
+    // Method one
     let mut creatures: Vec<Creature> = Vec::new();
     creatures.push(Creature::Human(Human { name: "Tom" }));
     creatures.push(Creature::Cat(Cat { name: "Frank" }));
@@ -54,5 +58,14 @@ fn main() {
             Creature::Human(h) => h.talk(),
             Creature::Cat(c) => c.talk(),
         }
+    }
+
+    // Method 2
+    let mut animals: Vec<Box<Animal>> = Vec::new();
+    animals.push(Box::new(Human { name: "Tom" }));
+    animals.push(Box::new(Cat { name: "Frank" }));
+
+    for a in animals.iter() {
+        a.talk()
     }
 }
