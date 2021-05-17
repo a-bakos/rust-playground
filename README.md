@@ -21,7 +21,7 @@ CMD | DESC
 `cargo fmt` | Automatic code formatter
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt
 `rustup doc` | Open documentation
-`rustdoc file.rs` | Generate local html documentation
+`rustdoc file.rs` | Generate local html documentation (into doc folder)
 
 **Rust online playground** - https://play.rust-lang.org/
 
