@@ -15,6 +15,17 @@ struct Company<'a> {
     ceo: &'a Person,
 }
 
+// Lifetime elision
+impl Person {
+    // When you write this:
+    // fn get_ref_name(&self) -> &String {
+    // ... this is what you're actually getting by the compiler (it does if for
+    // you in the background, makes sure all parts will live long enough):
+    fn get_ref_name<'a>(&'a self) -> &'a String {
+        &self.name
+    }
+}
+
 fn main() {
     let boss = Person {
         name: String::from("Tony Stark"),
