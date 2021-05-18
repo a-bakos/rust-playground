@@ -1,0 +1,12 @@
+[package]
+name = "p16-mods"
+version = "0.1.0"
+authors = ["a-bakos"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# for modularizing the code
+[lib]
+name = "files" # name of lib
+path = "src/files/lib.rs"
