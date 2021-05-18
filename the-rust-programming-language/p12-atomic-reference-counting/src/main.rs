@@ -26,6 +26,7 @@ impl Person {
 /// variable ("name" here) they would change the variable which keeps the
 /// number of references, the number of pointers, they would do it in a
 /// thread safe way.
+/// Arc doesn't protect for concurrency!
 fn main() {
     let name = Arc::new("Frank".to_string());
     let person = Person::new(name.clone());
