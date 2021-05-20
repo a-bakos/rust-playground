@@ -47,4 +47,16 @@ fn main() {
 
     let plus_one: Vec<i32> = plus_one_iter.collect();
     println!("{:?}", plus_one);
+
+    // Because of lazy evaluation, we can
+    // create a vec from 1 to infinity, but
+    // only work with the elements the code
+    // actually uses
+    let numbers_6: Vec<i32> = (1..) // 1 to infinity
+        .map(|x| x + 1) // [2, 3,  4,  5, ...]
+        .map(|x| x * x) // [4, 9, 16, 25, ...]
+        .take(5) // "take" the first five
+        .collect(); // collect them into a vec
+
+    println!("{:?}", numbers_6);
 }
