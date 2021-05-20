@@ -1,0 +1,45 @@
+// The best candidates to ues generics for
+
+fn largest_i32(list: &[i32]) -> i32 {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+
+fn largest_char(list: &[char]) -> char {
+    let mut largest = list[0];
+
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+
+struct PointInt {
+    x: i32,
+    y: i32,
+}
+struct PointFloat {
+    x: f32,
+    y: f32,
+}
+
+fn main() {
+    let number_list = vec![34, 50, 100, 65];
+    let result = largest_i32(&number_list);
+    println!("The largest number is {}", result);
+
+    let char_list = vec!['y', 'm', 'a', 'q'];
+    let result = largest_char(&char_list);
+    println!("The largest char is {}", result);
+
+    let integer = PointInt { x: 5, y: 10 };
+    let float = PointFloat { x: 3.0, y: 9.0 };
+}
