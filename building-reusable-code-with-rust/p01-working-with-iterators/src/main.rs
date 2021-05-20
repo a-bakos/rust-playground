@@ -36,4 +36,15 @@ fn main() {
     //		- accumulator
     //		- element
     println!("Fold sum: {}", fold_sum);
+
+    // Lazy evaluation demonstration
+    let numbers_5 = vec![1, 2, 3, 4];
+    // Not consumed:
+    // numbers_5.iter().map(|x| x + 1);
+
+    let plus_one_iter = numbers_5.iter().map(|x| x + 1);
+    println!("{:?}", plus_one_iter);
+
+    let plus_one: Vec<i32> = plus_one_iter.collect();
+    println!("{:?}", plus_one);
 }
