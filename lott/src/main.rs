@@ -7,25 +7,25 @@ const MAX_NUM: u8 = 60;
 
 // dedicated error type for parsing
 #[derive(Debug, Error)]
-enum ParseError {
+pub enum ParseError {
     #[error("ID must be a number: {0}")]
     InvalidId(#[from] std::num::ParseIntError),
 
     #[error("Empty record")]
     EmptyRecord,
 
-    #[error("Wrong number: {0}")]
-    WrongNumber(u8),
+    #[error("Invalid number: {0}")]
+    InvalidNumber(u8),
 }
 
 #[derive(Debug)]
 pub struct DrawRecord {
-    id: String, // draw number
-    date: String,
-    balls: Vec<u8>,
-    bonus: u8,
-    set: u8,
-    machine: String,
+    pub id: String,
+    pub date: String,
+    pub balls: Vec<u8>,
+    pub bonus: u8,
+    pub set: u8,
+    pub machine: String,
 }
 impl DrawRecord {
     pub fn new(id: String, date: String, bonus: u8, set: u8, machine: String) -> DrawRecord {
@@ -42,22 +42,70 @@ impl DrawRecord {
 
 #[derive(Debug)]
 pub struct DrawRecords {
-    all: Vec<Vec<u8>>,
+    pub all: Vec<Vec<u8>>,
+    pub all_1: Vec<u8>,
+    pub all_2: Vec<u8>,
+    pub all_3: Vec<u8>,
+    pub all_4: Vec<u8>,
+    pub all_5: Vec<u8>,
+    pub all_6: Vec<u8>,
 }
 impl DrawRecords {
     pub fn new() -> DrawRecords {
-        DrawRecords { all: vec![] }
+        DrawRecords {
+            all: vec![],
+            all_1: vec![],
+            all_2: vec![],
+            all_3: vec![],
+            all_4: vec![],
+            all_5: vec![],
+            all_6: vec![],
+        }
     }
 
     pub fn add(&mut self, numbers: Vec<u8>) {
         self.all.push(numbers);
     }
+
+    pub fn most_common_set(&mut self) {
+        for record in &self.all {
+            for (index, _num) in record.iter().enumerate() {
+                let the_num = |x: usize| record[x as usize];
+                match index {
+                    0 => self.all_1.push(the_num(index)),
+                    1 => self.all_2.push(the_num(index)),
+                    2 => self.all_3.push(the_num(index)),
+                    3 => self.all_4.push(the_num(index)),
+                    4 => self.all_5.push(the_num(index)),
+                    5 => self.all_6.push(the_num(index)),
+                    _ => println!("Nope"),
+                }
+            }
+        }
+
+        self.all_1.sort();
+        self.all_2.sort();
+        self.all_3.sort();
+        self.all_4.sort();
+        self.all_5.sort();
+        self.all_6.sort();
+
+        // min
+        // max
+        // most common
+        // count each
+
+        println!("{:?}", self.all_1);
+        println!("{:?}", self.all_2);
+        println!("{:?}", self.all_3);
+        println!("{:?}", self.all_4);
+        println!("{:?}", self.all_5);
+        println!("{:?}", self.all_6);
+    }
 }
 
 // Handling file
-// std::path::PathBuf
 fn load_records(filename: &str) -> std::io::Result<DrawRecords> {
-    // return early with ? if there's a problem
     let mut file = File::open(filename)?;
     let mut buffer = String::new();
     file.read_to_string(&mut buffer)?;
@@ -111,7 +159,7 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
         if num > 0 && num < MAX_NUM {
             Ok(num)
         } else {
-            Err(ParseError::WrongNumber(num))
+            Err(ParseError::InvalidNumber(num))
         }
     };
 
@@ -123,6 +171,8 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
     balls.push(ball_number(&fields[5].to_string())?);
     balls.push(ball_number(&fields[6].to_string())?);
 
+    balls.sort();
+
     Ok(DrawRecord {
         date,
         balls,
@@ -133,10 +183,19 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
     })
 }
 
-fn main() -> Result<(), std::io::Error> {
-    let recs = load_records(FILENAME)?;
+fn run() -> Result<(), std::io::Error> {
+    let mut recs = load_records(FILENAME)?;
+
+    recs.most_common_set();
 
     Ok(for record in recs.all {
-        println!("{:?}", record);
+        for num in record {
+            print!("{:-2} ", num);
+        }
+        println!("");
     })
+}
+
+fn main() {
+    run();
 }
