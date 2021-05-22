@@ -3,6 +3,7 @@ use std::io::Read;
 use thiserror::Error;
 
 const FILENAME: &str = "lotto-draw-history.csv";
+const MAX_NUM: u8 = 60;
 
 // dedicated error type for parsing
 #[derive(Debug, Error)]
@@ -13,8 +14,8 @@ enum ParseError {
     #[error("Empty record")]
     EmptyRecord,
 
-    #[error("Missing fields: {0}")]
-    MissingField(String),
+    #[error("Wrong number: {0}")]
+    WrongNumber(u8),
 }
 
 #[derive(Debug)]
@@ -66,6 +67,10 @@ fn load_records(filename: &str) -> std::io::Result<DrawRecords> {
 fn parse_records(buffer: String) -> DrawRecords {
     let mut recs = DrawRecords::new();
     for (num, record) in buffer.split('\n').enumerate() {
+        // Skip the header line
+        if num == 0 {
+            continue;
+        }
         // .enumerate() gives us a tuple, with iteration number and the current data
         if record != "" {
             match parse_record(record) {
@@ -101,20 +106,22 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
         None => return Err(ParseError::EmptyRecord),
     };
 
-    let ball_1 = u8::from_str_radix(fields[1], 10)?;
-    let ball_2 = u8::from_str_radix(fields[2], 10)?;
-    let ball_3 = u8::from_str_radix(fields[3], 10)?;
-    let ball_4 = u8::from_str_radix(fields[4], 10)?;
-    let ball_5 = u8::from_str_radix(fields[5], 10)?;
-    let ball_6 = u8::from_str_radix(fields[6], 10)?;
+    let ball_number = |x: &String| -> Result<u8, ParseError> {
+        let num = u8::from_str_radix(x, 10)?;
+        if num > 0 && num < MAX_NUM {
+            Ok(num)
+        } else {
+            Err(ParseError::WrongNumber(num))
+        }
+    };
 
     let mut balls = Vec::new();
-    balls.push(ball_1);
-    balls.push(ball_2);
-    balls.push(ball_3);
-    balls.push(ball_4);
-    balls.push(ball_5);
-    balls.push(ball_6);
+    balls.push(ball_number(&fields[1].to_string())?);
+    balls.push(ball_number(&fields[2].to_string())?);
+    balls.push(ball_number(&fields[3].to_string())?);
+    balls.push(ball_number(&fields[4].to_string())?);
+    balls.push(ball_number(&fields[5].to_string())?);
+    balls.push(ball_number(&fields[6].to_string())?);
 
     Ok(DrawRecord {
         date,
