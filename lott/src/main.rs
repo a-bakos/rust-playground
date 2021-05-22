@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::fs::File;
 use std::io::Read;
 use thiserror::Error;
@@ -138,6 +139,29 @@ impl DrawRecords {
         println!("Min 5th: {}", get_min_from(&self.all_5));
         println!("Min 6th: {}", get_min_from(&self.all_6));
     }
+
+    pub fn occurences_in_sets(&self) {
+        let count_occurences = |title: &str, x: &Vec<u8>| {
+            print!("{}", title);
+            let mut count = HashMap::new();
+            for num in x {
+                let num_count = match count.get(num) {
+                    Some(num_val) => num_val + 1,
+                    None => 1,
+                };
+                count.insert(num, num_count);
+            }
+            print!("{:?}", count);
+            println!("");
+        };
+
+        count_occurences("Num count in 1st: ", &self.all_1);
+        count_occurences("Num count in 2nd: ", &self.all_2);
+        count_occurences("Num count in 3rd: ", &self.all_3);
+        count_occurences("Num count in 4th: ", &self.all_4);
+        count_occurences("Num count in 5th: ", &self.all_5);
+        count_occurences("Num count in 6th: ", &self.all_6);
+    }
 }
 
 // Handling file
@@ -225,6 +249,8 @@ fn run() -> Result<(), std::io::Error> {
     recs.extract_nums();
     recs.get_min_from_sets();
     recs.get_max_from_sets();
+
+    recs.occurences_in_sets();
 
     Ok(for record in recs.all {
         for num in record {
