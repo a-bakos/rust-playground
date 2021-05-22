@@ -67,7 +67,7 @@ impl DrawRecords {
         self.all.push(numbers);
     }
 
-    pub fn most_common_set(&mut self) {
+    pub fn extract_nums(&mut self) {
         for record in &self.all {
             for (index, _num) in record.iter().enumerate() {
                 let the_num = |x: usize| record[x as usize];
@@ -95,12 +95,48 @@ impl DrawRecords {
         // most common
         // count each
 
-        println!("{:?}", self.all_1);
-        println!("{:?}", self.all_2);
-        println!("{:?}", self.all_3);
-        println!("{:?}", self.all_4);
-        println!("{:?}", self.all_5);
-        println!("{:?}", self.all_6);
+        let print_sets = |title: &str, set: &Vec<u8>| {
+            print!("{}", title);
+            for num in set {
+                print!("{:-2} ", num);
+            }
+            println!("");
+        };
+
+        print_sets("All 1st: ", &self.all_1);
+        print_sets("All 2nd: ", &self.all_2);
+        print_sets("All 3rd: ", &self.all_3);
+        print_sets("All 4th: ", &self.all_4);
+        print_sets("All 5th: ", &self.all_5);
+        print_sets("All 6th: ", &self.all_6);
+    }
+
+    pub fn get_max_from_sets(&self) {
+        let get_max_from = |x: &Vec<u8>| match x.iter().max() {
+            Some(max) => *max,
+            None => 0,
+        };
+
+        println!("Max 1st: {}", get_max_from(&self.all_1));
+        println!("Max 2nd: {}", get_max_from(&self.all_2));
+        println!("Max 3rd: {}", get_max_from(&self.all_3));
+        println!("Max 4th: {}", get_max_from(&self.all_4));
+        println!("Max 5th: {}", get_max_from(&self.all_5));
+        println!("Max 6th: {}", get_max_from(&self.all_6));
+    }
+
+    pub fn get_min_from_sets(&self) {
+        let get_min_from = |x: &Vec<u8>| match x.iter().min() {
+            Some(min) => *min,
+            None => 0,
+        };
+
+        println!("Min 1st: {}", get_min_from(&self.all_1));
+        println!("Min 2nd: {}", get_min_from(&self.all_2));
+        println!("Min 3rd: {}", get_min_from(&self.all_3));
+        println!("Min 4th: {}", get_min_from(&self.all_4));
+        println!("Min 5th: {}", get_min_from(&self.all_5));
+        println!("Min 6th: {}", get_min_from(&self.all_6));
     }
 }
 
@@ -186,7 +222,9 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
 fn run() -> Result<(), std::io::Error> {
     let mut recs = load_records(FILENAME)?;
 
-    recs.most_common_set();
+    recs.extract_nums();
+    recs.get_min_from_sets();
+    recs.get_max_from_sets();
 
     Ok(for record in recs.all {
         for num in record {
