@@ -1,13 +1,21 @@
 use std::fs::File;
-use std::io::{Read, Write};
-use std::path::PathBuf;
-//use thiserror::Error;
-
-// open csv
-// parse csv rows
-// sort draw numbers
+use std::io::Read;
+use thiserror::Error;
 
 const FILENAME: &str = "lotto-draw-history.csv";
+
+// dedicated error type for parsing
+#[derive(Debug, Error)]
+enum ParseError {
+    #[error("ID must be a number: {0}")]
+    InvalidId(#[from] std::num::ParseIntError),
+
+    #[error("Empty record")]
+    EmptyRecord,
+
+    #[error("Missing fields: {0}")]
+    MissingField(String),
+}
 
 #[derive(Debug)]
 pub struct DrawRecord {
@@ -47,7 +55,7 @@ impl DrawRecords {
 
 // Handling file
 // std::path::PathBuf
-fn load_records(filename: PathBuf) -> std::io::Result<DrawRecords> {
+fn load_records(filename: &str) -> std::io::Result<DrawRecords> {
     // return early with ? if there's a problem
     let mut file = File::open(filename)?;
     let mut buffer = String::new();
@@ -57,48 +65,48 @@ fn load_records(filename: PathBuf) -> std::io::Result<DrawRecords> {
 
 fn parse_records(buffer: String) -> DrawRecords {
     let mut recs = DrawRecords::new();
-    for (_num, record) in buffer.split('\n').enumerate() {
+    for (num, record) in buffer.split('\n').enumerate() {
         // .enumerate() gives us a tuple, with iteration number and the current data
         if record != "" {
             match parse_record(record) {
-                Some(record) => recs.add(record.balls),
-                None => println!("Err"),
+                Ok(record) => recs.add(record.balls),
+                Err(e) => println!("Error on line {}: {}\n > \"{}\"\n", num + 1, e, record),
             }
         }
     }
     recs
 }
 
-fn parse_record(record: &str) -> Option<DrawRecord> {
+fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
     let fields: Vec<&str> = record.split(',').collect();
 
     let date = match fields.get(0) {
         Some(date) => date.to_string(),
-        None => "".to_string(),
+        None => return Err(ParseError::EmptyRecord),
     };
     let bonus = match fields.get(7) {
-        Some(bonus) => bonus.trim().parse::<u8>().ok()?,
-        None => 0,
+        Some(bonus) => u8::from_str_radix(bonus, 10)?,
+        None => return Err(ParseError::EmptyRecord),
     };
     let set = match fields.get(8) {
-        Some(set) => set.trim().parse::<u8>().ok()?,
-        None => 0,
+        Some(set) => u8::from_str_radix(set, 10)?,
+        None => return Err(ParseError::EmptyRecord),
     };
     let machine = match fields.get(9) {
         Some(machine) => machine.to_string(),
-        None => "".to_string(),
+        None => return Err(ParseError::EmptyRecord),
     };
     let id = match fields.get(10) {
         Some(id) => id.to_string(),
-        None => "".to_string(),
+        None => return Err(ParseError::EmptyRecord),
     };
 
-    let ball_1 = fields[1].trim().parse::<u8>().ok()?;
-    let ball_2 = fields[2].trim().parse::<u8>().ok()?;
-    let ball_3 = fields[3].trim().parse::<u8>().ok()?;
-    let ball_4 = fields[4].trim().parse::<u8>().ok()?;
-    let ball_5 = fields[5].trim().parse::<u8>().ok()?;
-    let ball_6 = fields[6].trim().parse::<u8>().ok()?;
+    let ball_1 = u8::from_str_radix(fields[1], 10)?;
+    let ball_2 = u8::from_str_radix(fields[2], 10)?;
+    let ball_3 = u8::from_str_radix(fields[3], 10)?;
+    let ball_4 = u8::from_str_radix(fields[4], 10)?;
+    let ball_5 = u8::from_str_radix(fields[5], 10)?;
+    let ball_6 = u8::from_str_radix(fields[6], 10)?;
 
     let mut balls = Vec::new();
     balls.push(ball_1);
@@ -108,7 +116,7 @@ fn parse_record(record: &str) -> Option<DrawRecord> {
     balls.push(ball_5);
     balls.push(ball_6);
 
-    Some(DrawRecord {
+    Ok(DrawRecord {
         date,
         balls,
         bonus,
@@ -118,14 +126,10 @@ fn parse_record(record: &str) -> Option<DrawRecord> {
     })
 }
 
-fn main() {
-    let draw_test = DrawRecord::new(
-        "2651".to_string(),
-        "19-May-21".to_string(),
-        10, //bonus
-        4,
-        "Lancelot".to_string(),
-    );
+fn main() -> Result<(), std::io::Error> {
+    let recs = load_records(FILENAME)?;
 
-    println!("{:?}", draw_test);
+    Ok(for record in recs.all {
+        println!("{:?}", record);
+    })
 }
