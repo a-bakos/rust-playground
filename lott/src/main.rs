@@ -50,6 +50,9 @@ pub struct DrawRecords {
     pub all_4: Vec<u8>,
     pub all_5: Vec<u8>,
     pub all_6: Vec<u8>,
+    pub min_set: Vec<u8>,
+    pub max_set: Vec<u8>,
+    pub most_common_set: Vec<u8>,
 }
 impl DrawRecords {
     pub fn new() -> DrawRecords {
@@ -61,6 +64,9 @@ impl DrawRecords {
             all_4: vec![],
             all_5: vec![],
             all_6: vec![],
+            min_set: vec![],
+            max_set: vec![],
+            most_common_set: vec![],
         }
     }
 
@@ -112,37 +118,40 @@ impl DrawRecords {
         print_sets("All 6th: ", &self.all_6);
     }
 
-    pub fn get_max_from_sets(&self) {
+    pub fn get_max_from_sets(&mut self) {
         let get_max_from = |x: &Vec<u8>| match x.iter().max() {
             Some(max) => *max,
             None => 0,
         };
 
-        println!("Max 1st: {}", get_max_from(&self.all_1));
-        println!("Max 2nd: {}", get_max_from(&self.all_2));
-        println!("Max 3rd: {}", get_max_from(&self.all_3));
-        println!("Max 4th: {}", get_max_from(&self.all_4));
-        println!("Max 5th: {}", get_max_from(&self.all_5));
-        println!("Max 6th: {}", get_max_from(&self.all_6));
+        self.max_set.push(get_max_from(&self.all_1));
+        self.max_set.push(get_max_from(&self.all_2));
+        self.max_set.push(get_max_from(&self.all_3));
+        self.max_set.push(get_max_from(&self.all_4));
+        self.max_set.push(get_max_from(&self.all_5));
+        self.max_set.push(get_max_from(&self.all_6));
+
+        println!("The max set: {:?}", self.max_set);
     }
 
-    pub fn get_min_from_sets(&self) {
+    pub fn get_min_from_sets(&mut self) {
         let get_min_from = |x: &Vec<u8>| match x.iter().min() {
             Some(min) => *min,
             None => 0,
         };
 
-        println!("Min 1st: {}", get_min_from(&self.all_1));
-        println!("Min 2nd: {}", get_min_from(&self.all_2));
-        println!("Min 3rd: {}", get_min_from(&self.all_3));
-        println!("Min 4th: {}", get_min_from(&self.all_4));
-        println!("Min 5th: {}", get_min_from(&self.all_5));
-        println!("Min 6th: {}", get_min_from(&self.all_6));
+        self.min_set.push(get_min_from(&self.all_1));
+        self.min_set.push(get_min_from(&self.all_2));
+        self.min_set.push(get_min_from(&self.all_3));
+        self.min_set.push(get_min_from(&self.all_4));
+        self.min_set.push(get_min_from(&self.all_5));
+        self.min_set.push(get_min_from(&self.all_6));
+
+        println!("The min set: {:?}", self.min_set);
     }
 
-    pub fn occurences_in_sets(&self) {
-        let count_occurences = |title: &str, x: &Vec<u8>| {
-            print!("{}", title);
+    pub fn occurences_in_sets(&mut self) {
+        let count_occurences = |x: &Vec<u8>| {
             let mut count = HashMap::new();
             for num in x {
                 let num_count = match count.get(num) {
@@ -151,16 +160,34 @@ impl DrawRecords {
                 };
                 count.insert(num, num_count);
             }
-            print!("{:?}", count);
+
+            let mut most_common_v: u8 = 0;
+            let mut most_common_ks: Vec<u8> = vec![];
+            for (_k, &v) in count.iter() {
+                if v > most_common_v {
+                    most_common_v = v;
+                }
+            }
+            for (&k, &v) in count.iter() {
+                if v == most_common_v {
+                    if most_common_ks.contains(&k) {
+                        continue;
+                    } else {
+                        most_common_ks.push(*k);
+                    }
+                }
+            }
+
             println!("");
+            println!("MOST COMMON NUMBERS {:?}", most_common_ks);
         };
 
-        count_occurences("Num count in 1st: ", &self.all_1);
-        count_occurences("Num count in 2nd: ", &self.all_2);
-        count_occurences("Num count in 3rd: ", &self.all_3);
-        count_occurences("Num count in 4th: ", &self.all_4);
-        count_occurences("Num count in 5th: ", &self.all_5);
-        count_occurences("Num count in 6th: ", &self.all_6);
+        count_occurences(&self.all_1);
+        count_occurences(&self.all_2);
+        count_occurences(&self.all_3);
+        count_occurences(&self.all_4);
+        count_occurences(&self.all_5);
+        count_occurences(&self.all_6);
     }
 }
 
