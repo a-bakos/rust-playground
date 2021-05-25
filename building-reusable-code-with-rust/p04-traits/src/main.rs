@@ -61,6 +61,17 @@ impl Car {
     }
 }
 
+// Trait bounds
+fn from_berlin_to_paris<T: Vehicle>(vehicle: T) {
+    while location_of(&vehicle) != "Paris" {
+        vehicle.self_move()
+    }
+}
+
+fn location_of<T: Vehicle>(vehicle: &T) -> &'static str {
+    "Berlin"
+}
+
 fn main() {
     println!("Hello, world!");
 }
