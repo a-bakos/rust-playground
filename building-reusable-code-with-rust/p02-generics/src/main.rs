@@ -22,14 +22,20 @@ fn largest_char(list: &[char]) -> char {
 ///// These could be rewritten as :
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T {
     let mut largest = list[0];
+    //                ^ Copy
 
     for &item in list.iter() {
+        // ^ copy
         if item > largest {
+            //  ^ PartialOrd::gt()
             largest = item;
         }
     }
     largest
 }
+// Another way to structure the function signature is:
+// fn largest<T>(list: &[T]) -> T
+//  where T: PartialOrd + Copy {}
 
 struct PointInt {
     x: i32,
