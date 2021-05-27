@@ -33,3 +33,16 @@ fn main() {
     let n_unknown = counter.next();
     println!("{:?}", n_unknown);
 }
+
+//////
+/// B)
+
+trait X {}
+trait Y {}
+trait Z: X + Y {} // Meaning, if you want to implement trait Z, you first have to implement X and Y
+
+struct A;
+
+// impl X for A {}
+// impl Y for A {}
+// impl Z for A {}
