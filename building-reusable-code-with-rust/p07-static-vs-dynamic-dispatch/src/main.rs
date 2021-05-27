@@ -49,6 +49,21 @@ fn main() {
     // show_myself_u32(y);
 
     // Dynamic dispatch
+    // (sidenote: two ways to use trait objects with
+    // concrete types: specify the type or cast it
+    // as trait object)
+    // The problem with this is that the compiler
+    // will not know which type implementation to use
+    // and this will create a performance hit at
+    // runtime.
+    // Trait objects as implemented internally,
+    // are structs, and contain a data field and a
+    // vtable field. The first one points to the
+    // concrete type data, the latter is a list of
+    // function pointers.
+    // Dynamic dispatch goes into this vtable field
+    // to look up the function pointers and then calls
+    // it as needed.
     let v: &ShowMyself = &42;
     let w = &"Hello, world".to_string() as &ShowMyself;
     show_myself_dyn(v);
