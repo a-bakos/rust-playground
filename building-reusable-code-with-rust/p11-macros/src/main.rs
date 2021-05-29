@@ -4,6 +4,16 @@
 // Macros are more complex and you probably don't need to use them unless you're
 // running out of options.
 
+// Macros are not included by default because they don't have namespaces so
+// there could be code collisions.
+// When you import a module/crate you have to explicitly say:
+// #[macro_use]
+// mod my_module_with_macros;
+//
+// Loads only my_macro! from the crate:
+// #[macro_use(my_macro)]
+// extern crate my_crate_with_macros
+
 // Create a custom macro
 macro_rules! hello {
     () => {
