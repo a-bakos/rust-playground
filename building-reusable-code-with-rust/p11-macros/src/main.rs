@@ -1,5 +1,5 @@
 // METAPROGRAMMING
-// Macros
+// Macros - basics
 
 // Macros are more complex and you probably don't need to use them unless you're
 // running out of options.

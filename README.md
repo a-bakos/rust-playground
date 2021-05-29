@@ -20,6 +20,7 @@ CMD | DESC
 `cargo clippy` | See idiomatic code suggestions
 `cargo fmt` | Automatic code formatter
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt
+`cargo help` | Cargo command info
 `rustup doc` | Open documentation
 `rustdoc file.rs` | Generate local html documentation (into doc folder)
 
