@@ -47,6 +47,9 @@ fn main() {
         ..Default::default() // use the default for the rest
     };
     println!("{:?}", data_2);
+
+    let default_pet: Pet = Default::default();
+    println!("{:?}", default_pet);
 }
 
 // Default trait
@@ -56,4 +59,18 @@ fn main() {
 struct MyData {
     int_field: i32,
     float_field: f32,
+}
+
+// Defaults can also be used on enums
+#[derive(Debug)]
+enum Pet {
+    Cat,
+    Dog,
+    Bird,
+}
+
+impl Default for Pet {
+    fn default() -> Pet {
+        Pet::Cat
+    }
 }
