@@ -1,0 +1,5 @@
+// cargo new example-binary --bin
+// cargo new example-library --lib
+//
+// Binary crate is an independent program
+// Library crate is a set of function or code we can reuse
