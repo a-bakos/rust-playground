@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::fs::File;
+use std::io;
 use std::io::Read;
 use thiserror::Error;
 
@@ -270,6 +271,33 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
     })
 }
 
+fn get_input() -> Option<String> {
+    let mut buffer: String = String::new();
+    while io::stdin().read_line(&mut buffer).is_err() {
+        println!("Please enter your data again");
+    }
+    let input = buffer.trim().to_string();
+    if input.is_empty() {
+        None
+    } else {
+        Some(input)
+    }
+}
+
+fn menu() {
+    let mut user_input: Option<String>;
+    loop {
+        let user_input = get_input();
+
+        match user_input {
+            Some(the_input) => {
+                println!("{:?}", the_input);
+            }
+            None => continue,
+        }
+    }
+}
+
 fn run() -> Result<(), std::io::Error> {
     let mut recs = load_records(FILENAME)?;
 
@@ -288,5 +316,6 @@ fn run() -> Result<(), std::io::Error> {
 }
 
 fn main() {
-    run();
+    //run();
+    menu();
 }
