@@ -32,4 +32,9 @@ fn main() {
     }
 
     println!("{:?}", ll);
+
+    let mut v = Vec::with_capacity(100);
+    v.push("hello".to_string());
+    v.push("goodbye".to_string());
+    println!("len = {:?}, cap = {:?}", v.len(), v.capacity());
 }
