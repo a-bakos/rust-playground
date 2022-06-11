@@ -11,6 +11,8 @@ CMD | DESC
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
 `cargo test --doc` | Further documentation for testing
+`cargo test --help` | Displays the options that can be used with `test`
+`cargo test -- --help` | Displays the options after the `--` separator
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo new --lib my-lib` | Naw library file/project
