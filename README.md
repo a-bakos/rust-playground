@@ -14,6 +14,7 @@ CMD | DESC
 `cargo test --help` | Displays the options that can be used with `test`
 `cargo test -- --help` | Displays the options after the `--` separator
 `cargo test -- --test-threads=1` | Run test without parallelism (one thread only)
+`cargo test -- --nocapture` | Disable output capture (show printed values for passing tests)
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo new --lib my-lib` | Naw library file/project
