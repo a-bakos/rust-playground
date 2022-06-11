@@ -10,6 +10,7 @@ CMD | DESC
 `cargo run -q` | Build + run with no console messages
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
+`cargo test test_name` | Run specific test(s) by name
 `cargo test --doc` | Further documentation for testing
 `cargo test --help` | Displays the options that can be used with `test`
 `cargo test -- --help` | Displays the options after the `--` separator
