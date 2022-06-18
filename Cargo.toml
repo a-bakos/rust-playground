@@ -15,5 +15,5 @@ edition = "2021"
 [profile.dev]
 opt-level = 0
 
-[profile-release]
+[profile.release]
 opt-level = 3
