@@ -8,7 +8,7 @@ CMD | DESC
 `cargo build`| Build with Cargo
 `cargo run` | Build + run with Cargo
 `cargo run -q` | Build + run with no console messages
-`cargo run -p package_name` | Build + run specified package (used with Workspaces)
+`cargo run -p package_name` | Build + run specified package in a workspace
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
 `cargo test test_name` | Run specific a test by name
@@ -18,6 +18,7 @@ CMD | DESC
 `cargo test -- --test-threads=1` | Run test without parallelism (one thread only)
 `cargo test -- --nocapture` | Disable output capture (show printed values for passing tests)
 `cargo test -- --ignored` | Run only ignored tests
+`cargo test -p package_name` | Run tests for a particular package in a workspace
 `cargo build --release` | Build for release
 `cargo clean` | Remove the `target/` folder
 `cargo new project-name` | New Cargo project
