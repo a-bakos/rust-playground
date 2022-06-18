@@ -10,7 +10,13 @@ CMD | DESC
 `cargo run -q` | Build + run with no console messages
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
+`cargo test test_name` | Run specific a test by name
 `cargo test --doc` | Further documentation for testing
+`cargo test --help` | Displays the options that can be used with `test`
+`cargo test -- --help` | Displays the options after the `--` separator
+`cargo test -- --test-threads=1` | Run test without parallelism (one thread only)
+`cargo test -- --nocapture` | Disable output capture (show printed values for passing tests)
+`cargo test -- --ignored` | Run only ignored tests
 `cargo build --release` | Build for release
 `cargo new project-name` | New Cargo project
 `cargo new --lib my-lib` | Naw library file/project
@@ -36,3 +42,4 @@ CMD | DESC
 **Other**
 
 - https://cheats.rs/
+- https://soushi888.notion.site/Rust-b8318583755e49448ccd59784df08c62
