@@ -4,7 +4,7 @@ use std::io;
 use std::io::Read;
 use thiserror::Error;
 
-const FILENAME: &str = "lotto-draw-history.csv";
+const FILENAME: &str = "draw-history.csv";
 const MAX_NUM: u8 = 60;
 
 // dedicated error type for parsing
@@ -50,7 +50,6 @@ pub struct DrawRecords {
     pub all_3: Vec<u8>,
     pub all_4: Vec<u8>,
     pub all_5: Vec<u8>,
-    pub all_6: Vec<u8>,
     pub min_set: Vec<u8>,
     pub max_set: Vec<u8>,
     pub most_common_set: Vec<u8>,
@@ -64,7 +63,6 @@ impl DrawRecords {
             all_3: vec![],
             all_4: vec![],
             all_5: vec![],
-            all_6: vec![],
             min_set: vec![],
             max_set: vec![],
             most_common_set: vec![],
@@ -85,7 +83,6 @@ impl DrawRecords {
                     2 => self.all_3.push(the_num(index)),
                     3 => self.all_4.push(the_num(index)),
                     4 => self.all_5.push(the_num(index)),
-                    5 => self.all_6.push(the_num(index)),
                     _ => println!("Nope"),
                 }
             }
@@ -96,7 +93,6 @@ impl DrawRecords {
         self.all_3.sort();
         self.all_4.sort();
         self.all_5.sort();
-        self.all_6.sort();
 
         // min
         // max
@@ -116,7 +112,6 @@ impl DrawRecords {
         print_sets("All 3rd: ", &self.all_3);
         print_sets("All 4th: ", &self.all_4);
         print_sets("All 5th: ", &self.all_5);
-        print_sets("All 6th: ", &self.all_6);
     }
 
     pub fn get_max_from_sets(&mut self) {
@@ -130,7 +125,6 @@ impl DrawRecords {
         self.max_set.push(get_max_from(&self.all_3));
         self.max_set.push(get_max_from(&self.all_4));
         self.max_set.push(get_max_from(&self.all_5));
-        self.max_set.push(get_max_from(&self.all_6));
 
         println!("The max set: {:?}", self.max_set);
     }
@@ -146,7 +140,6 @@ impl DrawRecords {
         self.min_set.push(get_min_from(&self.all_3));
         self.min_set.push(get_min_from(&self.all_4));
         self.min_set.push(get_min_from(&self.all_5));
-        self.min_set.push(get_min_from(&self.all_6));
 
         println!("The min set: {:?}", self.min_set);
     }
@@ -188,7 +181,6 @@ impl DrawRecords {
         count_occurences(&self.all_3);
         count_occurences(&self.all_4);
         count_occurences(&self.all_5);
-        count_occurences(&self.all_6);
     }
 }
 
@@ -257,7 +249,6 @@ fn parse_record(record: &str) -> Result<DrawRecord, ParseError> {
     balls.push(ball_number(&fields[3].to_string())?);
     balls.push(ball_number(&fields[4].to_string())?);
     balls.push(ball_number(&fields[5].to_string())?);
-    balls.push(ball_number(&fields[6].to_string())?);
 
     balls.sort();
 

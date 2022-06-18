@@ -1,5 +1,6 @@
 use crate::discard::Discard;
 use crate::Card;
+use crate::Deck;
 
 #[derive(Debug)]
 pub struct Player {
@@ -28,5 +29,20 @@ impl Player {
 
         discard_pile.cards.push(to_discard);
         discard_pile.total_cards += 1;
+    }
+
+    pub fn take_two(&self, deck: &mut Deck) {
+        let mut counter = 0;
+        loop {
+            if counter == 2 {
+                break;
+            }
+
+            let card = match deck.the_cards.pop() {
+                Some(the_card) => the_card,
+                None => println!("reset discard"),
+            };
+            self.cards.push(the_card);
+        }
     }
 }
