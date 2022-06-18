@@ -8,6 +8,7 @@ CMD | DESC
 `cargo build`| Build with Cargo
 `cargo run` | Build + run with Cargo
 `cargo run -q` | Build + run with no console messages
+`cargo run -p package_name` | Build + run specified package (used with Workspaces)
 `cargo check` | Build check with Cargo
 `cargo test` | Run code test (test mod's and #[cfg(test)])
 `cargo test test_name` | Run specific a test by name
