@@ -5,6 +5,7 @@ CMD | DESC
 `cargo --version` | see Cargo's version
 `rustc main.rs` | Build a Rust file
 `main.exe` | Run a Rust program
+`cargo --list` | List Cargo commands (custom commands included)
 `cargo build`| Build with Cargo
 `cargo run` | Build + run with Cargo
 `cargo run -q` | Build + run with no console messages
