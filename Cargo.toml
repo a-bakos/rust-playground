@@ -1,0 +1,19 @@
+# This .toml file is an example to demonstrate what we can customise here and how.
+
+[package]
+name = "project-name"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+# Customise builds with Release Profiles 
+# The opt-level setting controls the number of optimisations Rust will apply to the code, with a range of 0 - 3.
+
+[profile.dev]
+opt-level = 0
+
+[profile-release]
+opt-level = 3
