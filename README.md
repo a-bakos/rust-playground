@@ -32,6 +32,10 @@ CMD | DESC
 `rustup doc` | Open documentation
 `rustdoc file.rs` | Generate local html documentation (into doc folder)
 
+## Other commands
+
+CMD | DESC
+--- | ----
 `rm -rf ~/.cargo/registry/index/*` | Remove cargo registry (fixes "Blocking waiting for file lock on package cache")
 
 **Rust online playground** - https://play.rust-lang.org/
