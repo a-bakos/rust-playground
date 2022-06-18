@@ -19,6 +19,7 @@ CMD | DESC
 `cargo test -- --nocapture` | Disable output capture (show printed values for passing tests)
 `cargo test -- --ignored` | Run only ignored tests
 `cargo build --release` | Build for release
+`cargo clean` | Remove the `target/` folder
 `cargo new project-name` | New Cargo project
 `cargo new --lib my-lib` | Naw library file/project
 `cargo update` | Update a crate (ignore lock)
