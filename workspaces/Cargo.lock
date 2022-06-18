@@ -10,10 +10,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "add-two"
+version = "0.1.0"
+
+[[package]]
 name = "adder"
 version = "0.1.0"
 dependencies = [
  "add-one",
+ "add-two",
  "rand 0.3.23",
 ]
 
