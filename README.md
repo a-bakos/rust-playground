@@ -53,3 +53,4 @@ CMD | DESC
 
 - https://cheats.rs/
 - https://soushi888.notion.site/Rust-b8318583755e49448ccd59784df08c62
+- Let's get Rusty
