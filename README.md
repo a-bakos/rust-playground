@@ -58,7 +58,11 @@ CMD | DESC
 ### VS Code extensions
 
 [Rust analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
 [Code LLDB debugger](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+
 [Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
+
 [Error Lens - inline errors](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+
 [Crates - crates.io support](https://marketplace.visualstudio.com/items?itemName=serayuzgur.crates)
