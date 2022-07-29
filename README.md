@@ -5,6 +5,7 @@ CMD | DESC
 `cargo --version` | see Cargo's version
 `rustc main.rs` | Build a Rust file
 `main.exe` | Run a Rust program
+`cargo --list` | List Cargo commands (custom commands included)
 `cargo build`| Build with Cargo
 `cargo run` | Build + run with Cargo
 `cargo run -q` | Build + run with no console messages
@@ -52,3 +53,16 @@ CMD | DESC
 
 - https://cheats.rs/
 - https://soushi888.notion.site/Rust-b8318583755e49448ccd59784df08c62
+- Let's get Rusty
+
+### VS Code extensions
+
+[Rust analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+
+[Code LLDB debugger](https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb)
+
+[Better TOML](https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml)
+
+[Error Lens - inline errors](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
+
+[Crates - crates.io support](https://marketplace.visualstudio.com/items?itemName=serayuzgur.crates)
