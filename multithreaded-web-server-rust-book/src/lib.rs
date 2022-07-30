@@ -15,7 +15,7 @@ impl<F: FnOnce()> FnBox for F {
 
 struct Worker {
     id: usize,
-    thread: JoinHandle<()>,
+    thread: Option<JoinHandle<()>>,
 }
 
 impl Worker {
@@ -26,7 +26,22 @@ impl Worker {
             job.call_box();
         });
 
-        Worker { id, thread }
+        Worker {
+            id,
+            thread: Some(thread),
+        }
+    }
+}
+
+impl Drop for ThreadPool {
+    fn drop(&mut self) {
+        for worker in &mut self.workers {
+            println!("Shutting down worker {}", worker.id);
+
+            if let Some(thread) = worker.thread.take() {
+                thread.join().unwrap();
+            }
+        }
     }
 }
 
