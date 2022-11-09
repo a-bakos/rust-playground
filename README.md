@@ -31,6 +31,7 @@ CMD | DESC
 `cargo fmt` | Automatic code formatter
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt
 `cargo help` | Cargo command info
+`cargo add {crate-name}` | Add dependencies to a Cargo.toml manifest file **[More](https://doc.rust-lang.org/cargo/commands/cargo-add.html)**
 `rustup doc` | Open documentation
 `rustdoc file.rs` | Generate local html documentation (into doc folder)
 
