@@ -1,39 +1,39 @@
-CMD | DESC
---- | ----
-`rustup update` | get the latest version
-`rustc --version` | see the language version
-`cargo --version` | see Cargo's version
-`rustc main.rs` | Build a Rust file
-`main.exe` | Run a Rust program
-`cargo --list` | List Cargo commands (custom commands included)
-`cargo build`| Build with Cargo
-`cargo run` | Build + run with Cargo
-`cargo run -q` | Build + run with no console messages
-`cargo run -p package_name` | Build + run specified package in a workspace
-`cargo check` | Build check with Cargo
-`cargo test` | Run code test (test mod's and #[cfg(test)])
-`cargo test test_name` | Run specific a test by name
-`cargo test --doc` | Further documentation for testing
-`cargo test --help` | Displays the options that can be used with `test`
-`cargo test -- --help` | Displays the options after the `--` separator
-`cargo test -- --test-threads=1` | Run test without parallelism (one thread only)
-`cargo test -- --nocapture` | Disable output capture (show printed values for passing tests)
-`cargo test -- --ignored` | Run only ignored tests
-`cargo test -p package_name` | Run tests for a particular package in a workspace
-`cargo build --release` | Build for release
-`cargo clean` | Remove the `target/` folder
-`cargo new project-name` | New Cargo project
-`cargo new --lib my-lib` | Naw library file/project
-`cargo update` | Update a crate (ignore lock)
-`cargo doc --open` | Generate local documentation (use /// to comment)
-`cargo tree` | Show dependency graph
-`cargo clippy` | See idiomatic code suggestions
-`cargo fmt` | Automatic code formatter
-`cargo search crate-name` | Search for a crate on crates.io, eg. structopt
-`cargo help` | Cargo command info
-`cargo add {crate-name}` | Add dependencies to a Cargo.toml manifest file **[More](https://doc.rust-lang.org/cargo/commands/cargo-add.html)**
-`rustup doc` | Open documentation
-`rustdoc file.rs` | Generate local html documentation (into doc folder)
+CMD | DESC | MORE
+--- | ---- | ----
+`rustup update` | get the latest version |
+`rustc --version` | see the language version |
+`cargo --version` | see Cargo's version |
+`rustc main.rs` | Build a Rust file |
+`main.exe` | Run a Rust program |
+`cargo --list` | List Cargo commands (custom commands included) |
+`cargo build`| Build with Cargo |
+`cargo run` | Build + run with Cargo |
+`cargo run -q` | Build + run with no console messages |
+`cargo run -p package_name` | Build + run specified package in a workspace |
+`cargo check` | Build check with Cargo |
+`cargo test` | Run code test (test mod's and #[cfg(test)]) |
+`cargo test test_name` | Run specific a test by name |
+`cargo test --doc` | Further documentation for testing |
+`cargo test --help` | Displays the options that can be used with `test` |
+`cargo test -- --help` | Displays the options after the `--` separator |
+`cargo test -- --test-threads=1` | Run test without parallelism (one thread only) |
+`cargo test -- --nocapture` | Disable output capture (show printed values for passing tests) |
+`cargo test -- --ignored` | Run only ignored tests |
+`cargo test -p package_name` | Run tests for a particular package in a workspace |
+`cargo build --release` | Build for release |
+`cargo clean` | Remove the `target/` folder |
+`cargo new project-name` | New Cargo project |
+`cargo new --lib my-lib` | Naw library file/project |
+`cargo update` | Update a crate (ignore lock) |
+`cargo doc --open` | Generate local documentation (use /// to comment) |
+`cargo tree` | Show dependency graph |
+`cargo clippy` | See idiomatic code suggestions |
+`cargo fmt` | Automatic code formatter |
+`cargo search crate-name` | Search for a crate on crates.io, eg. structopt |
+`cargo help` | Cargo command info |
+`cargo add {crate-name}` | Add dependencies to a Cargo.toml manifest file | **[More](https://doc.rust-lang.org/cargo/commands/cargo-add.html)**
+`rustup doc` | Open documentation |
+`rustdoc file.rs` | Generate local html documentation (into doc folder) |
 
 ## Other commands
 
