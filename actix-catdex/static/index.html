@@ -6,25 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/css/index.css">
-    <title>CatDex</title>
+    <title>{{project_name}}</title>
 </head>
 
 <body>
-    <h1>CatCodex</h1>
+    <h1>{{project_name}}</h1>
 
     <section>
+        {{#each cats}}
         <article>
-            <h3>Cat 1</h3>
-            <img src="static/image/cat-1.jpg" alt="">
+            <h3>{{this.name}}</h3>
+            <img src="{{this.image_path}}" alt="">
         </article>
-        <article>
-            <h3>Cat 2</h3>
-            <img src="static/image/cat-2.jpg" alt="">
-        </article>
-        <article>
-            <h3>Cat 3</h3>
-            <img src="static/image/cat-3.jpg" alt="">
-        </article>
+        {{/each}}
     </section>
 </body>
 
