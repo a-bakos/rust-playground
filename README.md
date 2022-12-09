@@ -10,6 +10,7 @@ CMD | DESC | MORE
 `cargo run` | Build + run with Cargo |
 `cargo run -q` | Build + run with no console messages |
 `cargo run -p package_name` | Build + run specified package in a workspace |
+`RUST_BACKTRACE=1 cargo run` | Run with backtrace log |
 `cargo check` | Build check with Cargo |
 `cargo test` | Run code test (test mod's and #[cfg(test)]) |
 `cargo test test_name` | Run specific a test by name |
