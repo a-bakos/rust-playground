@@ -15,8 +15,8 @@ CMD | DESC | MORE
 `cargo test` | Run code test (test mod's and #[cfg(test)]) |
 `cargo test test_name` | Run specific a test by name |
 `cargo test --doc` | Further documentation for testing |
-`cargo test --help` | Displays the options that can be used with `test` |
-`cargo test -- --help` | Displays the options after the `--` separator |
+`cargo test --help` | Displays the options that can be used with `test` (arguments for the test utility) |
+`cargo test -- --help` | Displays the options after the `--` separator (arguments for the test binary) |
 `cargo test -- --test-threads=1` | Run test without parallelism (one thread only) |
 `cargo test -- --nocapture` | Disable output capture (show printed values for passing tests) |
 `cargo test -- --ignored` | Run only ignored tests |
