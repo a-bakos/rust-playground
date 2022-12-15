@@ -21,6 +21,8 @@ CMD | DESC | MORE
 `cargo test -- --nocapture` | Disable output capture (show printed values for passing tests) |
 `cargo test -- --show-output` | See everything that is printed to standard output
 `cargo test -- --ignored` | Run only ignored tests |
+`cargo test -- --test '*'` | Only run integration tests (not unit tests)
+`cargo test --lib` | Only run unit tests (not integration tests)
 `cargo test -p package_name` | Run tests for a particular package in a workspace |
 `cargo build --release` | Build for release |
 `cargo clean` | Remove the `target/` folder |
