@@ -27,6 +27,7 @@ CMD | DESC | MORE
 `cargo new --lib my-lib` | Naw library file/project |
 `cargo update` | Update a crate (ignore lock) |
 `cargo doc --open` | Generate local documentation (use /// to comment) |
+`cargo doc --no-deps --open` | Generate doc for only your crate (no external crates)
 `cargo tree` | Show dependency graph |
 `cargo clippy` | See idiomatic code suggestions |
 `cargo fmt` | Automatic code formatter |
