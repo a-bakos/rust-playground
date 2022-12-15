@@ -19,6 +19,7 @@ CMD | DESC | MORE
 `cargo test -- --help` | Displays the options after the `--` separator (arguments for the test binary) |
 `cargo test -- --test-threads=1` | Run test without parallelism (one thread only) |
 `cargo test -- --nocapture` | Disable output capture (show printed values for passing tests) |
+`cargo test -- --show-output` | See everything that is printed to standard output
 `cargo test -- --ignored` | Run only ignored tests |
 `cargo test -p package_name` | Run tests for a particular package in a workspace |
 `cargo build --release` | Build for release |
