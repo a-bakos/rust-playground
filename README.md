@@ -13,7 +13,7 @@ CMD | DESC | MORE
 `RUST_BACKTRACE=1 cargo run` | Run with backtrace log |
 `cargo check` | Build check with Cargo |
 `cargo test` | Run code test (test mod's and #[cfg(test)]) |
-`cargo test test_name` | Run specific a test by name |
+`cargo test test_name` | Run specific a test by name OR test(s) that have this argument in their name |
 `cargo test --doc` | Further documentation for testing |
 `cargo test --help` | Displays the options that can be used with `test` (arguments for the test utility) |
 `cargo test -- --help` | Displays the options after the `--` separator (arguments for the test binary) |
