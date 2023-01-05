@@ -3,6 +3,7 @@ CMD | DESC | MORE
 `rustup update` | get the latest version |
 `rustup component list --installed` | see installed Rust components | 
 `rustup component add cmpnt-name` | install a component | e.g. rust-docs
+`rustup docs --help` | see book docs options | 
 `rustc --version` | see the language version |
 `cargo --version` | see Cargo's version |
 `rustc main.rs` | Build a Rust file |
