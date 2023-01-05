@@ -5,7 +5,8 @@ CMD | DESC | MORE
 `rustup component add cmpnt-name` | install a component | e.g. rust-docs
 `rustup docs --help` | see book docs options | 
 `rustup docs --book` | open the book |
-`rustup docs --std` | open standard library documentation |
+`rustup docs std` | open standard library documentation |
+`rustup docs std::iter` | open iter module's doc in std library |
 `rustc --version` | see the language version |
 `cargo --version` | see Cargo's version |
 `rustc main.rs` | Build a Rust file |
