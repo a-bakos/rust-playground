@@ -1,6 +1,7 @@
 CMD | DESC | MORE
 --- | ---- | ----
 `rustup update` | get the latest version |
+`rustup component list --installed` | see installed Rust components | 
 `rustc --version` | see the language version |
 `cargo --version` | see Cargo's version |
 `rustc main.rs` | Build a Rust file |
