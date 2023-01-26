@@ -81,11 +81,9 @@ CMD | DESC
 
 ### Potential errors
 
-Corrupted file/component
+Error  | **Corrupted file/component**    
+-----  | ----------------------------
+Msg    | `error: failed to install component: 'cargo-x86_64-pc-windows-msvc', detected conflict: 'lib/rustlib\manifest-cargo-x86_64-pc-windows-msvc'`
+Step 1 | Remove toolchain: `rustup toolchain remove stable-x86_64-pc-windows-msvc`
+Step 2 | Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
 
-`error: failed to install component: 'cargo-x86_64-pc-windows-msvc', detected conflict: 'lib/rustlib\manifest-cargo-x86_64-pc-windows-msvc'`
-
-Fix: 
-
-Remove toolchain: `rustup toolchain remove stable-x86_64-pc-windows-msvc`
-Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
