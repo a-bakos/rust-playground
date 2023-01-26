@@ -78,3 +78,14 @@ CMD | DESC
 [Error Lens - inline errors](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
 
 [Crates - crates.io support](https://marketplace.visualstudio.com/items?itemName=serayuzgur.crates)
+
+### Potential errors
+
+Corrupted file/component
+
+`error: failed to install component: 'cargo-x86_64-pc-windows-msvc', detected conflict: 'lib/rustlib\manifest-cargo-x86_64-pc-windows-msvc'`
+
+Fix: 
+
+Remove toolchain: `rustup toolchain remove stable-x86_64-pc-windows-msvc`
+Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
