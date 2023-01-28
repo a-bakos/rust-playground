@@ -3,6 +3,7 @@ CMD | DESC | MORE
 `rustup update` | get the latest version |
 `rustup component list --installed` | see installed Rust components | 
 `rustup component add cmpnt-name` | install a component | e.g. rust-docs
+`rustup toolchain list` | see what toolchains are installed |
 `rustup docs --help` | see book docs options | 
 `rustup docs --book` | open the book |
 `rustup docs std` | open standard library documentation |
