@@ -40,6 +40,7 @@ CMD | DESC | MORE
 `cargo doc --no-deps --open` | Generate doc for only your crate (no external crates)
 `cargo tree` | Show dependency graph |
 `cargo clippy` | See idiomatic code suggestions |
+`cargo clippy -- -D warnings` | fail clheck if clippy emits any warnings | useful in a CI pipeline
 `cargo fmt` | Automatic code formatter |
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt |
 `cargo help` | Cargo command info |
