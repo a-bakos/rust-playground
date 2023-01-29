@@ -42,6 +42,7 @@ CMD | DESC | MORE
 `cargo clippy` | See idiomatic code suggestions |
 `cargo clippy -- -D warnings` | fail clheck if clippy emits any warnings | useful in a CI pipeline
 `cargo fmt` | Automatic code formatter |
+`cargo fmt -- --check` | code formatting | in a CI pipeline
 `cargo search crate-name` | Search for a crate on crates.io, eg. structopt |
 `cargo help` | Cargo command info |
 `cargo add {crate-name}` | Add dependencies to a Cargo.toml manifest file | **[More](https://doc.rust-lang.org/cargo/commands/cargo-add.html)**
