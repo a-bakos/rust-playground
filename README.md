@@ -92,3 +92,7 @@ Msg    | `error: failed to install component: 'cargo-x86_64-pc-windows-msvc', de
 Step 1 | Remove toolchain: `rustup toolchain remove stable-x86_64-pc-windows-msvc`
 Step 2 | Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
 
+### Directives
+
+- | -
+Mute clippy warnings | #[allow(clippy::lint_name)]
