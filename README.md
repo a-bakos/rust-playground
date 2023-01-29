@@ -96,4 +96,4 @@ Step 2 | Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
 
 What | How
 ---- | ---
-Mute clippy warnings | #[allow(clippy::lint_name)]
+Mute clippy warnings | `#[allow(clippy::lint_name)]`
