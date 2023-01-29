@@ -47,6 +47,7 @@ CMD | DESC | MORE
 `cargo help` | Cargo command info |
 `cargo add {crate-name}` | Add dependencies to a Cargo.toml manifest file | **[More](https://doc.rust-lang.org/cargo/commands/cargo-add.html)**
 `cargo install cargo-watch` | install cargo watch to monitor changes | 
+`cargo install cargo-audit` | install cargo audit to scan dependency tree for reported security vulnerabilities | 
 `cargo watch -x check` | run cargo watch | runs cargo check after every code change
 `cargo watch -x check -x test -x run` | chaining processes | runs check, then tests, then launches application
 `rustup doc` | Open documentation |
