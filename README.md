@@ -5,6 +5,8 @@ CMD | DESC | MORE
 `rustup component add cmpnt-name` | install a component | e.g. rust-docs
 `rustup toolchain list` | see what toolchains are installed |
 `rustup toolchain install nightly --allow-downgrade` | install the nightly compiler | eg. for `cargo-expand` crate to expand macros
+`rustup doc` | Open documentation |
+`rustdoc file.rs` | Generate local html documentation (into doc folder) |
 `rustup docs --help` | see book docs options | 
 `rustup docs --book` | open the book |
 `rustup docs std` | open standard library documentation |
@@ -51,8 +53,6 @@ CMD | DESC | MORE
 `cargo install cargo-audit` | install cargo audit to scan dependency tree for reported security vulnerabilities | 
 `cargo watch -x check` | run cargo watch | runs cargo check after every code change
 `cargo watch -x check -x test -x run` | chaining processes | runs check, then tests, then launches application
-`rustup doc` | Open documentation |
-`rustdoc file.rs` | Generate local html documentation (into doc folder) |
 
 ## Other commands
 
