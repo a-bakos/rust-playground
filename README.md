@@ -5,6 +5,7 @@ CMD | DESC | MORE
 `rustup component add cmpnt-name` | install a component | e.g. rust-docs
 `rustup toolchain list` | see what toolchains are installed |
 `rustup toolchain install nightly --allow-downgrade` | install the nightly compiler | eg. for `cargo-expand` crate to expand macros
+`cargo +nightly expand` | use the nightly toolchain just for this command invocation
 `rustup doc` | Open documentation |
 `rustdoc file.rs` | Generate local html documentation (into doc folder) |
 `rustup docs --help` | see book docs options | 
