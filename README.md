@@ -96,6 +96,13 @@ Msg    | `error: failed to install component: 'cargo-x86_64-pc-windows-msvc', de
 Step 1 | Remove toolchain: `rustup toolchain remove stable-x86_64-pc-windows-msvc`
 Step 2 | Re-install toolchain: `rustup install stable-x86_64-pc-windows-msvc`
 
+Error  | **IntelliJ Idea format on save fails / rustfmt error / says old version but current version is used / async fn**    
+-----  | ----------------------------
+Msg    | `Execution failed (exit code 1). C:/[...]/.cargo/bin/rustfmt.exe --emit=stdout stdout : stderr : error[E0670]: `async fn` is not permitted in Rust 2015 --> <stdin>:3:1  3 [...] switch to Rust 2018 or later  = help: pass `--edition 2021` to `rustc` = note: for more on editions, read https://doc.rust-lang.org/edition-guide`
+Step 1 | Outdated rustfmt version. Check: `rustfmt --version`. Update: `cargo install rustfmt`.
+Step 2 | Rust edition not specified in rustfmt command. Try: `rustfmt --edition 2021`
+Step 3 | Misconfigured IntelliJ IDEA settings. Adjust the command or the plugin's settings so the edition flag is passed as additional argument `--edition 2021`.
+
 ### Directives
 
 What | How
