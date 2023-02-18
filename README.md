@@ -10,7 +10,7 @@ CMD | DESC | MORE
 `rustdoc file.rs` | Generate local html documentation (into doc folder) |
 `rustup docs --help` | see book docs options | 
 `rustup docs --book` | open the book |
-`rustup docs std` | open standard library documentation |
+`rustup docs std` | open standard library documentation | same: `rustup doc --std`
 `rustup docs std::iter` | open iter module's doc in std library |
 `rustc --version` | see the language version |
 `cargo --version` | see Cargo's version |
