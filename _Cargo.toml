@@ -21,6 +21,8 @@ license-file = ""
 # Customise builds with Release Profiles 
 # The opt-level setting controls the number of optimisations Rust will apply to the code, with a range of 0 - 3.
 
+[dev-dependencies]
+
 [profile.dev]
 opt-level = 0
 
