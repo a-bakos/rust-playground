@@ -106,7 +106,9 @@ Step 3 | Misconfigured IntelliJ IDEA settings. Adjust the command or the plugin'
 Error | **rust-dgb**
 ----- | ------------
 Msg   | `error: the 'rust-gdb.exe' binary, normally provided by the 'rustc' component, is not applicable to the 'stable-x86_64-pc-windows-msvc' toolchain`
-Fix   | ?
+Info  | https://github.com/rust-lang/rustup/issues/2838
+Info  | https://github.com/rust-lang/rustup/issues/2843
+Fix   | ???
 
 ### Directives
 
