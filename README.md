@@ -103,6 +103,11 @@ Step 1 | Outdated rustfmt version. Check: `rustfmt --version`. Update: `cargo in
 Step 2 | Rust edition not specified in rustfmt command. Try: `rustfmt --edition 2021`
 Step 3 | Misconfigured IntelliJ IDEA settings. Adjust the command or the plugin's settings so the edition flag is passed as additional argument `--edition 2021`.
 
+Error | **rust-dgb**
+----- | ------------
+Msg   | `error: the 'rust-gdb.exe' binary, normally provided by the 'rustc' component, is not applicable to the 'stable-x86_64-pc-windows-msvc' toolchain`
+Fix   | ?
+
 ### Directives
 
 What | How
