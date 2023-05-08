@@ -6,6 +6,7 @@ CMD | DESC | MORE
 `rustup toolchain list` | see what toolchains are installed |
 `rustup toolchain install nightly --allow-downgrade` | install the nightly compiler | eg. for `cargo-expand` crate to expand macros
 `rustup target list` | list of available compilation target environments
+`rustup target install {target}` | install a specific build target | eg. `x86_64-apple-darwin`
 `cargo +nightly expand` | use the nightly toolchain just for this command invocation
 `rustup doc` | Open documentation |
 `rustdoc file.rs` | Generate local html documentation (into doc folder) |
@@ -37,6 +38,7 @@ CMD | DESC | MORE
 `cargo test --lib` | Only run unit tests (not integration tests)
 `cargo test -p package_name` | Run tests for a particular package in a workspace |
 `cargo build --release` | Build for release |
+`cargo build --release --target x86_64-apple-darwin` | build for a specific target
 `cargo clean` | Remove the `target/` folder |
 `cargo new project-name` | New Cargo project |
 `cargo new --lib my-lib` | Naw library file/project |
