@@ -25,6 +25,7 @@ CMD | DESC | MORE
 `cargo run -p package_name` | Build + run specified package in a workspace |
 `RUST_BACKTRACE=1 cargo run` | Run with backtrace log |
 `cargo check` | Build check with Cargo |
+`cargo check --workspace` | Build check on the workspace | On ll crates included in the workspace in the manifest Cargo.toml
 `cargo test` | Run code test (test mod's and #[cfg(test)]) |
 `cargo test test_name` | Run specific a test by name OR test(s) that have this argument in their name |
 `cargo test --doc` | Further documentation for testing |
