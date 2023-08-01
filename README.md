@@ -114,7 +114,7 @@ Info  | https://github.com/rust-lang/rustup/issues/2838
 Info  | https://github.com/rust-lang/rustup/issues/2843
 Fix   | ???
 
-### Directives | (More)[https://doc.rust-lang.org/reference/attributes.html]
+### Directives | [More](https://doc.rust-lang.org/reference/attributes.html)
 
 What | How
 ---- | ---
