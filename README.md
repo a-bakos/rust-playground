@@ -58,6 +58,7 @@ CMD | DESC | MORE
 `cargo install cargo-audit` | install cargo audit to scan dependency tree for reported security vulnerabilities | 
 `cargo watch -x check` | run cargo watch | runs cargo check after every code change
 `cargo watch -x check -x test -x run` | chaining processes | runs check, then tests, then launches application
+`cargo fix --edition` | adopting the newest edition |
 
 ## Other commands
 
